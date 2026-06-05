@@ -1,0 +1,12 @@
+packages:
+    - cms
+    - ui
+    - api
+
+allowBuilds:
+    esbuild: true
+    sharp: true
+
+peerDependencyRules:
+    allowedVersions:
+        '@sanity/cli-core': '^1 || ^2'
