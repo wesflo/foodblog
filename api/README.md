@@ -4,7 +4,7 @@ Standalone Fastify API for future backend or BFF responsibilities. It is not use
 
 ## Setup
 
-Copy `.env.example` to a local `.env` file if you need to override local defaults. Keep local `.env` files out of Git.
+Local environment is stored in `.env`, which is ignored by Git. `.env.example` documents the same non-secret defaults.
 
 ```bash
 pnpm dev:api

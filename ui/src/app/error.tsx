@@ -6,9 +6,9 @@ type ErrorPageProps = {
 };
 
 const ErrorPage = ({ error, reset }: ErrorPageProps) => (
-    <main className="site-shell">
-        <section className="intro" aria-labelledby="error-title">
-            <p className="eyebrow">Something went wrong</p>
+    <main className="page-shell">
+        <section className="page-document" aria-labelledby="error-title">
+            <p>Something went wrong</p>
             <h1 id="error-title">The page could not be loaded</h1>
             <p>{error.message}</p>
             <button type="button" onClick={reset}>

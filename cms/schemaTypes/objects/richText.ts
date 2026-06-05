@@ -1,17 +1,17 @@
 import { defineArrayMember, defineType } from 'sanity';
 
-export const portableText = defineType({
-    name: 'portableText',
-    title: 'Portable Text',
+export const richText = defineType({
+    name: 'richText',
+    title: 'Rich Text',
     type: 'array',
     of: [
         defineArrayMember({
             type: 'block',
             styles: [
-                { title: 'Normal', value: 'normal' },
+                { title: 'Paragraph', value: 'normal' },
+                { title: 'Heading 1', value: 'h1' },
                 { title: 'Heading 2', value: 'h2' },
                 { title: 'Heading 3', value: 'h3' },
-                { title: 'Quote', value: 'blockquote' },
             ],
             lists: [
                 { title: 'Bullet', value: 'bullet' },
@@ -23,7 +23,7 @@ export const portableText = defineType({
                     { title: 'Emphasis', value: 'em' },
                 ],
                 annotations: [
-                    {
+                    defineArrayMember({
                         name: 'link',
                         title: 'Link',
                         type: 'object',
@@ -38,23 +38,9 @@ export const portableText = defineType({
                                     }),
                             },
                         ],
-                    },
+                    }),
                 ],
             },
-        }),
-        defineArrayMember({
-            type: 'image',
-            options: {
-                hotspot: true,
-            },
-            fields: [
-                {
-                    name: 'alt',
-                    title: 'Alternative text',
-                    type: 'string',
-                    validation: (rule) => rule.required(),
-                },
-            ],
         }),
     ],
 });

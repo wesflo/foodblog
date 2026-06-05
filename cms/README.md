@@ -1,10 +1,17 @@
 # CMS
 
-Sanity Studio for editing food blog posts.
+Sanity Studio for editing generic food blog pages.
+
+## Project
+
+- Project ID: `###`
+- Dataset: `###`
+
+These values are public configuration, not authentication secrets.
 
 ## Setup
 
-Copy `.env.example` to a local `.env` file and fill in the Sanity project ID and dataset. Keep local `.env` files out of Git.
+Local environment is stored in `.env`, which is ignored by Git. `.env.example` documents the same non-secret variables.
 
 ```bash
 pnpm dev:cms
@@ -12,4 +19,6 @@ pnpm dev:cms
 
 Studio runs at `http://localhost:3333`.
 
-If a Sanity project has not been created yet, create or select one with the Sanity CLI, then use its project ID in the local environment file. Do not create or commit API tokens for this initial setup.
+## Test Page
+
+Create a `Page` document with title `Test Page`, slug `test-page`, and rich text content containing a heading, at least two paragraphs, a bullet list, a link, bold text, and italic text. Publish it, then verify it through the UI at `/test-page`.

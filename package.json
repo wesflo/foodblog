@@ -7,7 +7,7 @@
         "node": ">=22.0.0"
     },
     "scripts": {
-        "dev": "turbo dev --parallel",
+        "dev": "turbo dev",
         "dev:cms": "turbo dev --filter=@wesflo/foodblog-cms",
         "dev:ui": "turbo dev --filter=@wesflo/foodblog-ui",
         "dev:api": "turbo dev --filter=@wesflo/foodblog-api",

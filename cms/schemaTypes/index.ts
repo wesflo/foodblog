@@ -1,4 +1,4 @@
-import { post } from './documents/post';
-import { portableText } from './objects/portableText';
+import { page } from './documents/page';
+import { richText } from './objects/richText';
 
-export const schemaTypes = [post, portableText];
+export const schemaTypes = [page, richText];

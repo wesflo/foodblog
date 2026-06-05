@@ -4,13 +4,25 @@ A production-oriented TypeScript monorepo for a public, content-driven food blog
 
 ## Architecture
 
-This workspace uses pnpm workspaces and Turborepo. The repository has three application directories:
+This workspace uses pnpm workspaces and Turborepo. It contains exactly three application directories:
 
-- `cms`: Sanity Studio for editing food blog content.
-- `ui`: Next.js public website that renders published content from Sanity server-side.
+- `cms`: Sanity Studio for editing generic editorial pages.
+- `ui`: Next.js public website that renders Sanity pages server-side.
 - `api`: Standalone Fastify API reserved for future backend or BFF responsibilities.
 
-The Next.js app fetches public Sanity content directly on the server using tokenless queries. The `api` application is independent and is not part of the current content-rendering path.
+The current content flow is:
+
+```text
+Sanity Content Lake
+        ↓
+Next.js Server Component
+        ↓
+Rendered HTML
+        ↓
+Browser
+```
+
+The `api` application is independent and is not part of the Sanity content-rendering path.
 
 ## Prerequisites
 
@@ -32,24 +44,22 @@ pnpm install
 
 ## Sanity Project Configuration
 
-Create or select a Sanity project outside this repository, then copy each `.env.example` file to a local `.env` file and fill in the project ID and dataset. Do not commit real `.env` files.
+This repository is configured for:
 
-The CMS uses:
+- Project ID: `###`
+- Dataset: `production`
 
-```dotenv
-SANITY_STUDIO_PROJECT_ID=
-SANITY_STUDIO_DATASET=production
-```
+These are public configuration values, not authentication secrets. No Sanity API token is required for the initial published-content flow.
 
-The UI uses:
+## Environment Setup
 
-```dotenv
-NEXT_PUBLIC_SANITY_PROJECT_ID=
-NEXT_PUBLIC_SANITY_DATASET=production
-SANITY_API_VERSION=2026-06-05
-```
+Local env files are required for running the apps locally and are ignored by Git:
 
-No Sanity API token is required for the initial public published-content flow.
+- `cms/.env`
+- `ui/.env.local`
+- `api/.env`
+
+The matching `.env.example` files remain trackable and document the required variables.
 
 ## Commands
 
@@ -72,6 +82,7 @@ No Sanity API token is required for the initial public published-content flow.
 - UI: `http://localhost:3000`
 - CMS: `http://localhost:3333`
 - API health check: `http://localhost:4000/health`
+- Sanity test page route: `http://localhost:3000/test-page`
 
 ## Build And Test
 
@@ -83,10 +94,24 @@ pnpm test
 pnpm build
 ```
 
-The UI production build needs valid public Sanity project configuration so the server-rendered homepage can query published posts.
+## Manual Test Page
+
+Create the first Sanity test page through Studio:
+
+1. Run `pnpm dev:cms`.
+2. Open `http://localhost:3333`.
+3. Sign in to Sanity if prompted.
+4. Create a new `Page` document.
+5. Set the title to `Test Page`.
+6. Generate the slug `test-page`.
+7. Add content with one heading, at least two paragraphs, one unordered list, one link, one bold text fragment, and one italic text fragment.
+8. Publish the document.
+9. Visit `http://localhost:3000/test-page`.
+
+Do not create Sanity API tokens for this setup.
 
 ## Security
 
-This repository is intended to be public. Secrets must only be stored in local or deployment environment variables. `.env.example` files document required variable names and safe defaults only. Real `.env` files must never be committed.
+This repository is intended to be public. Secrets must only be stored in local or deployment environment variables. Real `.env` files must never be committed.
 
-Never commit passwords, API tokens, Sanity tokens, deployment tokens, private keys, webhook secrets, session secrets, credentialed connection strings, personal email addresses, private URLs, or internal hostnames. Sanity write tokens must never be exposed through `NEXT_PUBLIC_*` variables.
+Never commit passwords, API tokens, Sanity read tokens, Sanity write tokens, deployment tokens, private keys, webhook secrets, session secrets, credentialed connection strings, private URLs, or internal-only hostnames. Sanity write tokens must never be exposed through `NEXT_PUBLIC_*` variables.
