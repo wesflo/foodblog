@@ -6,23 +6,29 @@ A production-oriented TypeScript monorepo for a public, content-driven food blog
 
 This workspace uses pnpm workspaces and Turborepo. It contains exactly three application directories:
 
-- `cms`: Sanity Studio for editing generic editorial pages.
-- `ui`: Next.js public website that renders Sanity pages server-side.
-- `api`: Standalone Fastify API reserved for future backend or BFF responsibilities.
+- `studio`: Sanity Studio for managing content.
+- `ui`: Public website, currently implemented with Next.js and React.
+- `server`: Independent Fastify service for future backend responsibilities.
 
-The current content flow is:
+The current public content flow is:
 
 ```text
 Sanity Content Lake
         ↓
-Next.js Server Component
+Next.js Server Component in ui
         ↓
 Rendered HTML
         ↓
 Browser
 ```
 
-The `api` application is independent and is not part of the Sanity content-rendering path.
+The `ui` application communicates directly with Sanity for public content reads. The `server` application is not currently part of the public rendering path. Next.js server-side rendering does not make `server` redundant; `server` should only gain responsibilities that justify an independent service and deployment, such as webhooks, protected write operations, external integrations, background processes, scheduled jobs, or independent backend endpoints.
+
+## Applications
+
+- `studio` (`@wesflo/foodblog-studio`): Sanity Studio configuration, content schemas, editor UI, and Sanity deployment configuration.
+- `ui` (`@wesflo/foodblog-ui`): Public website with Next.js App Router, React Server Components, server-side Sanity queries, and Portable Text rendering.
+- `server` (`@wesflo/foodblog-server`): Fastify service for future standalone backend responsibilities.
 
 ## Prerequisites
 
@@ -46,7 +52,7 @@ pnpm install
 
 This repository is configured for:
 
-- Project ID: `###`
+- Project ID: `ios1w7iv`
 - Dataset: `production`
 
 These are public configuration values, not authentication secrets. No Sanity API token is required for the initial published-content flow.
@@ -55,19 +61,23 @@ These are public configuration values, not authentication secrets. No Sanity API
 
 Local env files are required for running the apps locally and are ignored by Git:
 
-- `cms/.env`
+- `studio/.env`
 - `ui/.env.local`
-- `api/.env`
+- `server/.env`
 
 The matching `.env.example` files remain trackable and document the required variables.
 
 ## Commands
 
-- `pnpm dev`: start CMS, UI, and API concurrently.
-- `pnpm dev:cms`: start Sanity Studio at `http://localhost:3333`.
-- `pnpm dev:ui`: start Next.js at `http://localhost:3000`.
-- `pnpm dev:api`: start Fastify at `http://localhost:4000`.
+- `pnpm dev`: start studio, ui, and server concurrently.
+- `pnpm dev:studio`: start Sanity Studio at `http://localhost:3333`.
+- `pnpm dev:ui`: start Next.js UI at `http://localhost:3000`.
+- `pnpm dev:server`: start Fastify server at `http://127.0.0.1:4000`.
 - `pnpm build`: build all applications.
+- `pnpm build:studio`: build Sanity Studio.
+- `pnpm build:ui`: build Next.js UI.
+- `pnpm build:server`: build Fastify server.
+- `pnpm deploy:studio`: deploy Sanity Studio.
 - `pnpm lint`: lint the complete repository.
 - `pnpm lint:fix`: lint and fix supported issues.
 - `pnpm typecheck`: run TypeScript checks.
@@ -79,9 +89,9 @@ The matching `.env.example` files remain trackable and document the required var
 
 ## Local URLs
 
-- UI: `http://localhost:3000`
-- CMS: `http://localhost:3333`
-- API health check: `http://localhost:4000/health`
+- Next.js UI: `http://localhost:3000`
+- Sanity Studio: `http://localhost:3333`
+- Fastify server health check: `http://127.0.0.1:4000/health`
 - Sanity test page route: `http://localhost:3000/test-page`
 
 ## Build And Test
@@ -98,7 +108,7 @@ pnpm build
 
 Create the first Sanity test page through Studio:
 
-1. Run `pnpm dev:cms`.
+1. Run `pnpm dev:studio`.
 2. Open `http://localhost:3333`.
 3. Sign in to Sanity if prompted.
 4. Create a new `Page` document.

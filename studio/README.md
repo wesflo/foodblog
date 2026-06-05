@@ -1,23 +1,29 @@
-# CMS
+# Studio
 
-Sanity Studio for editing generic food blog pages.
+Sanity Studio for managing food blog content.
 
 ## Project
 
-- Project ID: `###`
-- Dataset: `###`
+- Project ID: `ios1w7iv`
+- Dataset: `production`
 
 These values are public configuration, not authentication secrets.
 
 ## Setup
 
-Local environment is stored in `.env`, which is ignored by Git. `.env.example` documents the same non-secret variables.
+Local environment is stored in `studio/.env`, which is ignored by Git. `studio/.env.example` documents the same non-secret variables.
 
 ```bash
-pnpm dev:cms
+pnpm dev:studio
 ```
 
 Studio runs at `http://localhost:3333`.
+
+## Deployment
+
+```bash
+pnpm deploy:studio
+```
 
 ## Test Page
 

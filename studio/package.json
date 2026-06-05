@@ -1,17 +1,18 @@
 {
-    "name": "@wesflo/foodblog-cms",
+    "name": "@wesflo/foodblog-studio",
     "private": true,
     "version": "0.1.0",
     "type": "module",
     "scripts": {
-        "dev": "sanity dev --host 0.0.0.0 --port 3333",
+        "dev": "sanity dev --host localhost --port 3333",
         "build": "sanity build",
+        "deploy": "sanity deploy",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
         "typecheck": "tsc --noEmit",
         "clean": "rm -rf dist .sanity tsconfig.tsbuildinfo",
-        "test": "echo \"No CMS tests configured yet\"",
-        "test:watch": "echo \"No CMS tests configured yet\""
+        "test": "echo \"No Studio tests configured yet\"",
+        "test:watch": "echo \"No Studio tests configured yet\""
     },
     "dependencies": {
         "react": "19.2.7",
