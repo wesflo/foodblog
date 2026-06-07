@@ -2,27 +2,28 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: var(--space-s);
+    gap: var(--wf-space-xs);
+    min-width: 0;
     width: auto;
-    border: 1px solid transparent;
-    border-radius: var(--radius-m);
-    font-weight: 700;
+    border: var(--wf-border-width) solid transparent;
+    border-radius: var(--wf-radius-pill);
+    font-weight: 650;
     line-height: 1;
     text-decoration: none;
     transition:
-        background-color 160ms ease,
-        border-color 160ms ease,
-        color 160ms ease,
-        box-shadow 160ms ease,
-        transform 160ms ease;
+        background-color var(--wf-transition-fast),
+        border-color var(--wf-transition-fast),
+        color var(--wf-transition-fast),
+        box-shadow var(--wf-transition-fast),
+        transform var(--wf-transition-fast);
 }
 
 .button:focus-visible {
-    box-shadow: var(--focus-ring);
+    box-shadow: var(--wf-focus-ring);
 }
 
 .button:disabled {
-    opacity: 0.48;
+    cursor: not-allowed;
 }
 
 .button:not(:disabled):active {
@@ -33,72 +34,137 @@
     width: 100%;
 }
 
-.button[data-size='s'] {
-    min-height: 2rem;
-    padding: 0 var(--space-m);
-    font-size: var(--font-size-s);
+.button[data-size='small'] {
+    min-height: var(--wf-control-height-s);
+    padding-inline: var(--wf-space-m);
+    font-size: var(--wf-font-size-s);
 }
 
-.button[data-size='m'] {
-    min-height: 2.5rem;
-    padding: 0 var(--space-l);
-    font-size: var(--font-size-m);
+.button[data-size='medium'] {
+    min-height: var(--wf-control-height-m);
+    padding-inline: var(--wf-space-l);
+    font-size: var(--wf-font-size-m);
 }
 
-.button[data-size='l'] {
-    min-height: 3rem;
-    padding: 0 var(--space-xl);
-    font-size: var(--font-size-l);
+.button[data-size='large'] {
+    min-height: var(--wf-control-height-l);
+    padding-inline: var(--wf-space-xl);
+    font-size: var(--wf-font-size-l);
 }
 
-.button[data-variant='filled'] {
-    background: var(--color-primary);
-    color: var(--color-primary-foreground);
+.button[data-variant='primary'] {
+    background: var(--wf-primary);
+    color: var(--wf-primary-foreground);
 }
 
-.button[data-variant='filled']:not(:disabled):hover {
-    background: color-mix(in srgb, var(--color-primary) 88%, black);
+.button[data-variant='primary']:not(:disabled):hover {
+    background: var(--wf-primary-hover);
+    box-shadow: var(--wf-shadow-hover);
+}
+
+.button[data-variant='primary']:not(:disabled):active {
+    background: var(--wf-primary-active);
+}
+
+.button[data-variant='primary']:disabled {
+    background: var(--wf-primary-disabled);
+    color: var(--wf-primary-disabled-foreground);
 }
 
 .button[data-variant='secondary'] {
-    background: var(--color-secondary);
-    color: var(--color-secondary-foreground);
+    border-color: var(--wf-border);
+    background: var(--wf-surface);
+    color: var(--wf-text);
 }
 
-.button[data-variant='secondary']:not(:disabled):hover {
-    background: color-mix(in srgb, var(--color-secondary) 88%, white);
+.button[data-variant='secondary']:not(:disabled):hover,
+.button[data-variant='ghost']:not(:disabled):hover {
+    background: var(--wf-surface-muted);
+}
+
+.button[data-variant='secondary']:not(:disabled):active,
+.button[data-variant='outline']:not(:disabled):active,
+.button[data-variant='ghost']:not(:disabled):active {
+    background: color-mix(in srgb, var(--wf-surface-muted) 78%, var(--wf-primary));
+}
+
+.button[data-variant='secondary']:disabled,
+.button[data-variant='outline']:disabled,
+.button[data-variant='ghost']:disabled {
+    border-color: var(--wf-border);
+    background: var(--wf-surface-muted);
+    color: color-mix(in srgb, var(--wf-text-muted) 70%, var(--wf-surface));
 }
 
 .button[data-variant='outline'] {
-    border-color: var(--color-border);
-    background: var(--color-surface);
-    color: var(--color-foreground);
+    border-color: var(--wf-border-strong);
+    background: transparent;
+    color: var(--wf-text);
 }
 
 .button[data-variant='outline']:not(:disabled):hover {
-    border-color: var(--color-primary);
-    color: var(--color-primary);
+    border-color: var(--wf-primary);
+    color: var(--wf-primary);
 }
 
 .button[data-variant='ghost'] {
     background: transparent;
-    color: var(--color-foreground);
-}
-
-.button[data-variant='ghost']:not(:disabled):hover {
-    background: var(--color-muted);
+    color: var(--wf-primary);
 }
 
 .button[data-variant='link'] {
     min-height: auto;
-    padding: 0;
+    padding-inline: 0;
     border-color: transparent;
     background: transparent;
-    color: var(--color-primary);
+    color: var(--wf-primary);
     text-decoration: underline;
-    text-underline-offset: 0.16em;
+    text-underline-offset: 0.18em;
 }
 
-.button[data-variant='link']:not(:disabled):hover {
-    color: color-mix(in srgb, var(--color-primary) 78%, black);
+.button[data-variant='link']:disabled {
+    color: var(--wf-primary-disabled-foreground);
+}
+
+.button[data-variant='destructive'] {
+    background: var(--wf-destructive);
+    color: var(--wf-destructive-foreground);
+}
+
+.button[data-variant='destructive']:not(:disabled):hover {
+    background: var(--wf-destructive-hover);
+}
+
+.button[data-variant='destructive']:not(:disabled):active {
+    background: var(--wf-destructive-active);
+}
+
+.button[data-variant='destructive']:disabled {
+    background: var(--wf-destructive-disabled);
+    color: var(--wf-destructive-disabled-foreground);
+}
+
+.button svg {
+    flex: 0 0 auto;
+    width: var(--wf-icon-size-s);
+    height: var(--wf-icon-size-s);
+}
+
+.spinner {
+    animation: wf-spin 900ms linear infinite;
+}
+
+.srOnly {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+@keyframes wf-spin {
+    to {
+        transform: rotate(360deg);
+    }
 }

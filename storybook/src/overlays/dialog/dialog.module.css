@@ -1,0 +1,104 @@
+.backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background: var(--wf-overlay);
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 50;
+    display: grid;
+    gap: var(--wf-space-l);
+    width: min(34rem, calc(100vw - 2rem));
+    max-height: calc(100vh - 2rem);
+    overflow: auto;
+    border: var(--wf-border-width) solid var(--wf-border);
+    border-radius: var(--wf-radius-l);
+    background: var(--wf-surface);
+    box-shadow: var(--wf-shadow-overlay);
+    padding: var(--wf-space-xl);
+    transform: translate(-50%, -50%);
+}
+
+.popup:focus-visible {
+    box-shadow: var(--wf-shadow-overlay), var(--wf-focus-ring);
+}
+
+.header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--wf-space-m);
+}
+
+.title,
+.description {
+    margin: 0;
+}
+
+.title {
+    font-size: var(--wf-font-size-xl);
+    line-height: var(--wf-line-height-heading);
+}
+
+.description {
+    margin-top: var(--wf-space-xs);
+    color: var(--wf-text-muted);
+}
+
+.close {
+    display: inline-grid;
+    place-items: center;
+    width: var(--wf-control-height-s);
+    height: var(--wf-control-height-s);
+    border: var(--wf-border-width) solid var(--wf-border);
+    border-radius: var(--wf-radius-pill);
+    background: var(--wf-surface);
+    color: var(--wf-text);
+}
+
+.close svg,
+.infoIcon svg,
+.warningIcon svg {
+    width: var(--wf-icon-size-m);
+    height: var(--wf-icon-size-m);
+}
+
+.content {
+    display: grid;
+    gap: var(--wf-space-m);
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: var(--wf-space-s);
+}
+
+.infoIcon,
+.warningIcon {
+    display: inline-grid;
+    place-items: center;
+    width: var(--wf-control-height-l);
+    height: var(--wf-control-height-l);
+    border-radius: var(--wf-radius-pill);
+}
+
+.infoIcon {
+    background: var(--wf-info-surface);
+    color: var(--wf-info);
+}
+
+.warningIcon {
+    background: var(--wf-error-surface);
+    color: var(--wf-error);
+}
+
+@media (max-width: 560px) {
+    .popup {
+        padding: var(--wf-space-l);
+    }
+}

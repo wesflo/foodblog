@@ -1,0 +1,25 @@
+.root {
+    width: min(42rem, 100%);
+}
+
+.list {
+    display: flex;
+    border-bottom: var(--wf-border-width) solid var(--wf-border);
+}
+
+.tab {
+    border: 0;
+    border-bottom: 2px solid transparent;
+    background: transparent;
+    color: var(--wf-text-muted);
+    padding: var(--wf-space-s) var(--wf-space-m);
+}
+
+.tab[data-selected] {
+    border-color: var(--wf-primary);
+    color: var(--wf-primary);
+}
+
+.panel {
+    padding-block: var(--wf-space-l);
+}

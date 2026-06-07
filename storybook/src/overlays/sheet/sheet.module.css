@@ -1,0 +1,48 @@
+.backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background: var(--wf-overlay);
+}
+
+.sheet {
+    position: fixed;
+    inset: var(--wf-space-m);
+    z-index: 50;
+    display: grid;
+    align-content: start;
+    gap: var(--wf-space-2xl);
+    border: var(--wf-border-width) solid var(--wf-border);
+    border-radius: var(--wf-radius-xl);
+    background: var(--wf-surface);
+    box-shadow: var(--wf-shadow-overlay);
+    padding: var(--wf-space-xl);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title {
+    margin: 0;
+}
+
+.nav {
+    display: grid;
+    gap: var(--wf-space-l);
+    font-size: var(--wf-font-size-xl);
+}
+
+.socials {
+    display: flex;
+    gap: var(--wf-space-s);
+}
+
+@media (min-width: 800px) {
+    .sheet {
+        right: auto;
+        width: min(28rem, calc(100vw - 2rem));
+    }
+}

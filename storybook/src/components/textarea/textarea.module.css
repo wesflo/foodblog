@@ -1,0 +1,67 @@
+.field {
+    display: grid;
+    gap: var(--wf-space-xs);
+    width: min(32rem, 100%);
+}
+
+.control {
+    display: grid;
+    gap: var(--wf-space-xs);
+    border: var(--wf-border-width) solid var(--wf-border);
+    border-radius: var(--wf-radius-l);
+    background: var(--wf-surface);
+    padding: var(--wf-space-s) var(--wf-space-m);
+}
+
+.control:focus-within {
+    border-color: var(--wf-primary);
+    box-shadow: var(--wf-focus-ring);
+}
+
+.label {
+    color: var(--wf-text-muted);
+    font-size: var(--wf-font-size-xs);
+    font-weight: 650;
+}
+
+.textarea {
+    min-height: 8rem;
+    border: 0;
+    background: transparent;
+    color: var(--wf-text);
+    font: inherit;
+    resize: vertical;
+}
+
+.textarea:focus {
+    outline: 0;
+}
+
+.description,
+.message {
+    margin: 0;
+    color: var(--wf-text-muted);
+    font-size: var(--wf-font-size-s);
+}
+
+.field[data-status='error'] .control {
+    border-color: var(--wf-error);
+}
+
+.field[data-status='error'] .label,
+.field[data-status='error'] .message {
+    color: var(--wf-error);
+}
+
+.field[data-status='success'] .control {
+    border-color: var(--wf-success);
+}
+
+.field[data-status='success'] .label,
+.field[data-status='success'] .message {
+    color: var(--wf-success);
+}
+
+.field[data-disabled='true'] .control {
+    background: var(--wf-surface-muted);
+}

@@ -1,50 +1,140 @@
 :root {
     color-scheme: light;
 
-    --color-background: #fbfaf7;
-    --color-foreground: #25221d;
-    --color-surface: #ffffff;
-    --color-muted: #eee8df;
-    --color-muted-foreground: #6f675d;
-    --color-primary: #0f766e;
-    --color-primary-foreground: #ffffff;
-    --color-secondary: #f4c95d;
-    --color-secondary-foreground: #25221d;
-    --color-border: #d8d0c2;
-    --color-focus: #2563eb;
-    --color-danger: #b42318;
-    --color-danger-foreground: #ffffff;
-    --color-overlay: rgb(37 34 29 / 62%);
+    --wf-background: #f7f4ee;
+    --wf-surface: #fffcf8;
+    --wf-surface-muted: #f1ede7;
+    --wf-text: #272625;
+    --wf-text-muted: #76716c;
+    --wf-border: #e7e3de;
+    --wf-border-strong: #cbc6c0;
+    --wf-primary: #2d99f7;
+    --wf-secondary: #fa3c9b;
+    --wf-coral: #f05470;
+    --wf-yellow: #e7e89d;
+
+    --wf-primary-hover: #147ee0;
+    --wf-primary-active: #0f65c3;
+    --wf-primary-disabled: #d9ecff;
+    --wf-primary-foreground: #ffffff;
+    --wf-primary-disabled-foreground: #7aaee0;
+
+    --wf-destructive: #d92d4b;
+    --wf-destructive-hover: #bd1f3b;
+    --wf-destructive-active: #9f1930;
+    --wf-destructive-disabled: #ffdbe3;
+    --wf-destructive-foreground: #ffffff;
+    --wf-destructive-disabled-foreground: #c97284;
+
+    --wf-success: #14985f;
+    --wf-warning: #b96f00;
+    --wf-error: var(--wf-destructive);
+    --wf-info: var(--wf-primary);
+    --wf-info-surface: #eef7ff;
+    --wf-success-surface: #effaf3;
+    --wf-warning-surface: #fff7e8;
+    --wf-error-surface: #fff0f3;
+    --wf-overlay: rgb(39 38 37 / 46%);
+
+    --wf-border-width: 1px;
+    --wf-border-color: var(--wf-border);
 
     --font-family-sans:
-        Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --font-size-s: 0.875rem;
-    --font-size-m: 1rem;
-    --font-size-l: 1.125rem;
-    --font-size-xl: 1.5rem;
-    --font-size-2xl: 2rem;
-    --font-size-3xl: clamp(2.2rem, 7vw, 4rem);
-    --line-height-tight: 1.15;
-    --line-height-body: 1.6;
+        Geist, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --wf-font-family-display:
+        Geist, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --wf-font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-    --space-xs: 0.25rem;
-    --space-s: 0.5rem;
-    --space-m: 1rem;
-    --space-l: 1.5rem;
-    --space-xl: 2rem;
-    --space-2xl: 3rem;
+    --wf-font-size-xs: 0.75rem;
+    --wf-font-size-s: 0.875rem;
+    --wf-font-size-m: 1rem;
+    --wf-font-size-l: 1.125rem;
+    --wf-font-size-xl: 1.5rem;
+    --wf-font-size-2xl: clamp(1.85rem, 3.2vw, 3rem);
+    --wf-font-size-3xl: clamp(2.3rem, 4.8vw, 5rem);
+    --wf-font-size-4xl: clamp(3.25rem, 6.5vw, 7rem);
+    --wf-line-height-tight: 0.95;
+    --wf-line-height-heading: 1.08;
+    --wf-line-height-body: 1.75;
+    --wf-paragraph-gap: 0.875em;
 
-    --radius-s: 0.25rem;
-    --radius-m: 0.5rem;
-    --radius-l: 0.75rem;
-    --radius-full: 999px;
+    --wf-space-2xs: 0.25rem;
+    --wf-space-xs: 0.5rem;
+    --wf-space-s: 0.75rem;
+    --wf-space-m: 1rem;
+    --wf-space-l: 1.5rem;
+    --wf-space-xl: 2rem;
+    --wf-space-2xl: 3rem;
+    --wf-space-3xl: 4.5rem;
 
-    --content-width: 760px;
-    --wide-content-width: 1120px;
-    --focus-ring: 0 0 0 3px color-mix(in srgb, var(--color-focus) 28%, transparent);
+    --wf-radius-m: 16px;
+    --wf-radius-l: 26px;
+    --wf-radius-xl: 32px;
+    --wf-radius-pill: 999px;
 
-    --background: var(--color-background);
-    --foreground: var(--color-foreground);
-    --muted: var(--color-muted-foreground);
-    --accent: var(--color-primary);
+    --wf-control-height-s: 36px;
+    --wf-control-height-m: 44px;
+    --wf-control-height-l: 52px;
+
+    --wf-icon-size-xs: 12px;
+    --wf-icon-size-s: 16px;
+    --wf-icon-size-m: 20px;
+    --wf-icon-size-l: 24px;
+    --wf-icon-size-xl: 32px;
+
+    --wf-focus-ring-color: var(--wf-primary);
+    --wf-focus-ring-width: 2px;
+    --wf-focus-ring-offset: 3px;
+    --wf-focus-ring: 0 0 0 var(--wf-focus-ring-width) var(--wf-focus-ring-color);
+
+    --wf-transition-fast: 160ms ease-out;
+    --wf-transition-interaction: 280ms ease-out;
+    --wf-transition-layout: 420ms ease-out;
+
+    --wf-shadow-overlay: 0 24px 80px rgb(39 38 37 / 18%);
+    --wf-shadow-floating: 0 16px 48px rgb(39 38 37 / 14%);
+    --wf-shadow-hover: 0 10px 24px rgb(39 38 37 / 8%);
+
+    --wf-content-max-width: 1440px;
+    --wf-content-width: 760px;
+    --wf-wide-content-width: 1120px;
+    --wf-breakpoint-s: 600px;
+    --wf-breakpoint-m: 800px;
+    --wf-breakpoint-l: 1000px;
+    --wf-breakpoint-xl: 1200px;
+
+    --color-background: var(--wf-background);
+    --color-foreground: var(--wf-text);
+    --color-surface: var(--wf-surface);
+    --color-muted: var(--wf-surface-muted);
+    --color-muted-foreground: var(--wf-text-muted);
+    --color-primary: var(--wf-primary);
+    --color-primary-foreground: var(--wf-primary-foreground);
+    --color-secondary: var(--wf-secondary);
+    --color-border: var(--wf-border);
+    --color-focus: var(--wf-focus-ring-color);
+    --color-danger: var(--wf-destructive);
+    --color-overlay: var(--wf-overlay);
+
+    --font-size-s: var(--wf-font-size-s);
+    --font-size-m: var(--wf-font-size-m);
+    --font-size-l: var(--wf-font-size-l);
+    --font-size-xl: var(--wf-font-size-xl);
+    --font-size-2xl: var(--wf-font-size-2xl);
+    --font-size-3xl: var(--wf-font-size-3xl);
+    --line-height-tight: var(--wf-line-height-tight);
+    --line-height-body: var(--wf-line-height-body);
+    --space-xs: var(--wf-space-xs);
+    --space-s: var(--wf-space-s);
+    --space-m: var(--wf-space-m);
+    --space-l: var(--wf-space-l);
+    --space-xl: var(--wf-space-xl);
+    --space-2xl: var(--wf-space-2xl);
+    --radius-s: var(--wf-radius-m);
+    --radius-m: var(--wf-radius-m);
+    --radius-l: var(--wf-radius-l);
+    --radius-full: var(--wf-radius-pill);
+    --content-width: var(--wf-content-width);
+    --wide-content-width: var(--wf-wide-content-width);
+    --focus-ring: var(--wf-focus-ring);
 }

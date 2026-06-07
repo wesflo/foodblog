@@ -1,0 +1,42 @@
+.field {
+    display: grid;
+    gap: var(--wf-space-xs);
+    width: min(28rem, 100%);
+}
+
+.label {
+    color: var(--wf-text-muted);
+    font-size: var(--wf-font-size-s);
+    font-weight: 600;
+}
+
+.description,
+.message {
+    margin: 0;
+    font-size: var(--wf-font-size-s);
+    line-height: 1.4;
+}
+
+.description {
+    color: var(--wf-text-muted);
+}
+
+.message {
+    color: var(--wf-text-muted);
+}
+
+.field[data-status='error'] .label,
+.field[data-status='error'] .message {
+    color: var(--wf-error);
+}
+
+.field[data-status='success'] .label,
+.field[data-status='success'] .message {
+    color: var(--wf-success);
+}
+
+.field[data-disabled='true'] .label,
+.field[data-disabled='true'] .description,
+.field[data-disabled='true'] .message {
+    color: color-mix(in srgb, var(--wf-text-muted) 58%, var(--wf-surface));
+}

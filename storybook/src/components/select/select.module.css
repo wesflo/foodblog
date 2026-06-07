@@ -1,0 +1,79 @@
+.field {
+    display: grid;
+    gap: var(--wf-space-xs);
+    width: min(28rem, 100%);
+}
+
+.control {
+    position: relative;
+    display: grid;
+    gap: var(--wf-space-2xs);
+    border: var(--wf-border-width) solid var(--wf-border);
+    border-radius: var(--wf-radius-m);
+    background: var(--wf-surface);
+    padding: var(--wf-space-xs) var(--wf-space-m);
+}
+
+.control:focus-within {
+    border-color: var(--wf-primary);
+    box-shadow: var(--wf-focus-ring);
+}
+
+.label {
+    color: var(--wf-text-muted);
+    font-size: var(--wf-font-size-xs);
+    font-weight: 650;
+}
+
+.select {
+    min-height: 1.75rem;
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: var(--wf-text);
+    font: inherit;
+    padding-right: var(--wf-space-xl);
+}
+
+.select:focus {
+    outline: 0;
+}
+
+.chevron {
+    position: absolute;
+    right: var(--wf-space-m);
+    bottom: 0.85rem;
+    width: var(--wf-icon-size-s);
+    height: var(--wf-icon-size-s);
+    color: var(--wf-text-muted);
+    pointer-events: none;
+}
+
+.description,
+.message {
+    margin: 0;
+    color: var(--wf-text-muted);
+    font-size: var(--wf-font-size-s);
+}
+
+.field[data-status='error'] .control {
+    border-color: var(--wf-error);
+}
+
+.field[data-status='error'] .label,
+.field[data-status='error'] .message {
+    color: var(--wf-error);
+}
+
+.field[data-status='success'] .control {
+    border-color: var(--wf-success);
+}
+
+.field[data-status='success'] .label,
+.field[data-status='success'] .message {
+    color: var(--wf-success);
+}
+
+.field[data-disabled='true'] .control {
+    background: var(--wf-surface-muted);
+}

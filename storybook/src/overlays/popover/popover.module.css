@@ -1,0 +1,36 @@
+.popup {
+    position: relative;
+    display: grid;
+    gap: var(--wf-space-m);
+    width: min(20rem, calc(100vw - 2rem));
+    border: var(--wf-border-width) solid var(--wf-border);
+    border-radius: var(--wf-radius-l);
+    background: var(--wf-surface);
+    box-shadow: var(--wf-shadow-floating);
+    padding: var(--wf-space-l);
+}
+
+.title {
+    margin: 0;
+    font-weight: 750;
+}
+
+.content {
+    color: var(--wf-text-muted);
+}
+
+.close {
+    position: absolute;
+    top: var(--wf-space-s);
+    right: var(--wf-space-s);
+    display: inline-grid;
+    place-items: center;
+    border: 0;
+    background: transparent;
+    color: var(--wf-text-muted);
+}
+
+.close svg {
+    width: var(--wf-icon-size-s);
+    height: var(--wf-icon-size-s);
+}

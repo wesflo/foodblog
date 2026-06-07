@@ -1,0 +1,163 @@
+.richText {
+    color: var(--wf-text);
+    font-size: var(--wf-font-size-m);
+    line-height: var(--wf-line-height-body);
+}
+
+.richText > * {
+    margin-block: 0;
+}
+
+.richText > * + * {
+    margin-block-start: var(--wf-paragraph-gap);
+}
+
+.richText h1,
+.richText h2,
+.richText h3,
+.richText h4,
+.richText h5,
+.richText h6 {
+    break-after: avoid;
+    break-inside: avoid;
+    font-family: var(--wf-font-family-display);
+    font-weight: 300;
+    letter-spacing: -0.035em;
+    line-height: var(--wf-line-height-heading);
+}
+
+.richText h1 {
+    font-size: var(--wf-font-size-4xl);
+    line-height: var(--wf-line-height-tight);
+}
+
+.richText h2 {
+    font-size: var(--wf-font-size-3xl);
+}
+
+.richText h3 {
+    font-size: var(--wf-font-size-2xl);
+}
+
+.richText h4 {
+    font-size: var(--wf-font-size-xl);
+}
+
+.richText h5,
+.richText h6 {
+    font-size: var(--wf-font-size-l);
+    font-weight: 500;
+    letter-spacing: 0;
+}
+
+.richText h1 + * {
+    margin-block-start: calc(2.5 * 1lh);
+}
+
+.richText h2 + * {
+    margin-block-start: calc(2 * 1lh);
+}
+
+.richText h3 + * {
+    margin-block-start: calc(1.75 * 1lh);
+}
+
+.richText h4 + * {
+    margin-block-start: calc(1.5 * 1lh);
+}
+
+.richText a {
+    color: var(--wf-primary);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+}
+
+.richText blockquote {
+    break-inside: avoid;
+    border-left: 3px solid var(--wf-secondary);
+    color: var(--wf-text);
+    font-size: var(--wf-font-size-xl);
+    line-height: 1.35;
+    margin-inline: 0;
+    padding-inline-start: var(--wf-space-l);
+}
+
+.richText mark {
+    border-radius: 0.2em;
+    background: color-mix(in srgb, var(--wf-secondary) 18%, transparent);
+    padding-inline: 0.15em;
+}
+
+.richText code {
+    border-radius: 0.35rem;
+    background: var(--wf-surface-muted);
+    font-family: var(--wf-font-family-mono);
+    font-size: 0.9em;
+    padding: 0.1em 0.35em;
+}
+
+.richText pre {
+    break-inside: avoid;
+    overflow: auto;
+    border: var(--wf-border-width) solid var(--wf-border);
+    border-radius: var(--wf-radius-m);
+    background: var(--wf-surface);
+    padding: var(--wf-space-l);
+}
+
+.richText pre code {
+    background: transparent;
+    padding: 0;
+}
+
+.richText ul,
+.richText ol,
+.richText table,
+.richText figure {
+    break-inside: avoid;
+}
+
+.richText figcaption,
+.caption {
+    color: var(--wf-text-muted);
+    font-size: var(--wf-font-size-s);
+}
+
+.richText table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: var(--wf-radius-m);
+}
+
+.richText th,
+.richText td {
+    border: var(--wf-border-width) solid var(--wf-border);
+    padding: var(--wf-space-s) var(--wf-space-m);
+    text-align: left;
+}
+
+.columns {
+    column-count: 1;
+    column-gap: clamp(1.5rem, 3vw, 3rem);
+    orphans: 3;
+    widows: 3;
+}
+
+@media (min-width: 600px) {
+    .columns {
+        column-count: 2;
+    }
+}
+
+@media (min-width: 1000px) {
+    .columns {
+        column-count: 3;
+    }
+}
+
+@media (min-width: 1200px) {
+    .columns {
+        column-count: 4;
+    }
+}

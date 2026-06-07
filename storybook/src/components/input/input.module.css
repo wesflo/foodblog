@@ -1,0 +1,118 @@
+.field {
+    display: grid;
+    gap: var(--wf-space-xs);
+    width: min(28rem, 100%);
+}
+
+.control {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: var(--wf-control-height-l);
+    border: var(--wf-border-width) solid var(--wf-border);
+    border-radius: var(--wf-radius-m);
+    background: var(--wf-surface);
+    color: var(--wf-text);
+    transition:
+        border-color var(--wf-transition-fast),
+        box-shadow var(--wf-transition-fast),
+        background-color var(--wf-transition-fast);
+}
+
+.control:focus-within {
+    border-color: var(--wf-primary);
+    box-shadow: var(--wf-focus-ring);
+}
+
+.input {
+    width: 100%;
+    min-width: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    padding: 1.25rem var(--wf-space-m) 0.35rem;
+}
+
+.input:focus {
+    outline: 0;
+}
+
+.label {
+    position: absolute;
+    top: 50%;
+    left: var(--wf-space-m);
+    color: var(--wf-text-muted);
+    font-size: var(--wf-font-size-m);
+    pointer-events: none;
+    transform: translateY(-50%);
+    transform-origin: left center;
+    transition:
+        color var(--wf-transition-fast),
+        font-size var(--wf-transition-fast),
+        top var(--wf-transition-fast);
+}
+
+.input:focus + .label,
+.field[data-filled='true'] .label,
+.input:not(:placeholder-shown) + .label {
+    top: 0.7rem;
+    font-size: var(--wf-font-size-xs);
+}
+
+.icon {
+    display: inline-flex;
+    margin-left: var(--wf-space-m);
+    color: var(--wf-text-muted);
+}
+
+.icon svg,
+.action svg {
+    width: var(--wf-icon-size-s);
+    height: var(--wf-icon-size-s);
+}
+
+.icon + .input {
+    padding-left: var(--wf-space-xs);
+}
+
+.icon + .input + .label {
+    left: calc(var(--wf-space-m) + var(--wf-icon-size-s) + var(--wf-space-xs));
+}
+
+.action {
+    display: inline-flex;
+    margin-right: var(--wf-space-s);
+}
+
+.description,
+.message {
+    margin: 0;
+    color: var(--wf-text-muted);
+    font-size: var(--wf-font-size-s);
+    line-height: 1.4;
+}
+
+.field[data-status='error'] .control {
+    border-color: var(--wf-error);
+}
+
+.field[data-status='error'] .label,
+.field[data-status='error'] .message {
+    color: var(--wf-error);
+}
+
+.field[data-status='success'] .control {
+    border-color: var(--wf-success);
+}
+
+.field[data-status='success'] .label,
+.field[data-status='success'] .message {
+    color: var(--wf-success);
+}
+
+.field[data-disabled='true'] .control {
+    border-color: var(--wf-border);
+    background: var(--wf-surface-muted);
+    color: color-mix(in srgb, var(--wf-text-muted) 70%, var(--wf-surface));
+}

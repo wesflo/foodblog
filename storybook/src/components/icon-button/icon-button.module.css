@@ -1,0 +1,92 @@
+.button {
+    display: inline-grid;
+    place-items: center;
+    flex: 0 0 auto;
+    border: var(--wf-border-width) solid transparent;
+    border-radius: var(--wf-radius-pill);
+    transition:
+        background-color var(--wf-transition-fast),
+        border-color var(--wf-transition-fast),
+        color var(--wf-transition-fast),
+        box-shadow var(--wf-transition-fast);
+}
+
+.button:focus-visible {
+    box-shadow: var(--wf-focus-ring);
+}
+
+.button:disabled {
+    cursor: not-allowed;
+}
+
+.button[data-size='small'] {
+    width: var(--wf-control-height-s);
+    height: var(--wf-control-height-s);
+}
+
+.button[data-size='medium'] {
+    width: var(--wf-control-height-m);
+    height: var(--wf-control-height-m);
+}
+
+.button[data-size='large'] {
+    width: var(--wf-control-height-l);
+    height: var(--wf-control-height-l);
+}
+
+.button svg {
+    width: var(--wf-icon-size-m);
+    height: var(--wf-icon-size-m);
+}
+
+.button[data-variant='primary'] {
+    background: var(--wf-primary);
+    color: var(--wf-primary-foreground);
+}
+
+.button[data-variant='primary']:hover:not(:disabled) {
+    background: var(--wf-primary-hover);
+}
+
+.button[data-variant='secondary'] {
+    border-color: var(--wf-border);
+    background: var(--wf-surface);
+    color: var(--wf-text);
+}
+
+.button[data-variant='secondary']:hover:not(:disabled),
+.button[data-variant='ghost']:hover:not(:disabled) {
+    background: var(--wf-surface-muted);
+}
+
+.button[data-variant='outline'] {
+    border-color: var(--wf-border-strong);
+    background: transparent;
+    color: var(--wf-text);
+}
+
+.button[data-variant='outline']:hover:not(:disabled) {
+    border-color: var(--wf-primary);
+    color: var(--wf-primary);
+}
+
+.button[data-variant='ghost'] {
+    background: transparent;
+    color: var(--wf-primary);
+}
+
+.button[data-variant='destructive'] {
+    background: var(--wf-error-surface);
+    color: var(--wf-destructive);
+}
+
+.button[data-variant='destructive']:hover:not(:disabled) {
+    background: var(--wf-destructive);
+    color: var(--wf-destructive-foreground);
+}
+
+.button:disabled {
+    border-color: var(--wf-border);
+    background: var(--wf-surface-muted);
+    color: color-mix(in srgb, var(--wf-text-muted) 70%, var(--wf-surface));
+}

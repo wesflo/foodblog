@@ -1,0 +1,22 @@
+.popup {
+    display: grid;
+    min-width: 14rem;
+    overflow: hidden;
+    border: var(--wf-border-width) solid var(--wf-border);
+    border-radius: var(--wf-radius-m);
+    background: var(--wf-surface);
+    box-shadow: var(--wf-shadow-floating);
+    padding: var(--wf-space-xs);
+}
+
+.item {
+    border-radius: calc(var(--wf-radius-m) - 6px);
+    color: var(--wf-text);
+    cursor: pointer;
+    padding: var(--wf-space-s) var(--wf-space-m);
+}
+
+.item:hover,
+.item[data-highlighted] {
+    background: var(--wf-surface-muted);
+}

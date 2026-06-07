@@ -1,0 +1,4 @@
+.toast {
+    width: min(24rem, 100%);
+    filter: drop-shadow(var(--wf-shadow-floating));
+}

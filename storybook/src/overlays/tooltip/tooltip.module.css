@@ -1,0 +1,14 @@
+.popup {
+    max-width: 18rem;
+    border-radius: var(--wf-radius-m);
+    background: var(--wf-text);
+    color: var(--wf-surface);
+    box-shadow: var(--wf-shadow-floating);
+    font-size: var(--wf-font-size-s);
+    line-height: 1.45;
+    padding: var(--wf-space-s) var(--wf-space-m);
+}
+
+.arrow {
+    fill: var(--wf-text);
+}

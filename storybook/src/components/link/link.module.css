@@ -1,0 +1,44 @@
+.link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--wf-space-xs);
+    color: var(--wf-primary);
+    font-weight: 560;
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+    transition:
+        color var(--wf-transition-fast),
+        background-color var(--wf-transition-fast);
+}
+
+.link svg {
+    width: var(--wf-icon-size-s);
+    height: var(--wf-icon-size-s);
+}
+
+.link[data-variant='text'],
+.link[data-variant='arrow'],
+.link[data-variant='external'],
+.link[data-variant='back'],
+.link[data-variant='muted'] {
+    text-decoration-line: none;
+}
+
+.link:hover {
+    color: var(--wf-primary-hover);
+}
+
+.link:focus-visible {
+    border-radius: var(--wf-radius-m);
+    box-shadow: var(--wf-focus-ring);
+}
+
+.link[data-variant='muted'] {
+    color: var(--wf-text-muted);
+}
+
+.link[data-disabled='true'] {
+    color: color-mix(in srgb, var(--wf-text-muted) 55%, var(--wf-surface));
+    cursor: not-allowed;
+}

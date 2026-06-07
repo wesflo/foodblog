@@ -1,8 +1,8 @@
 body {
-    background: var(--color-background);
-    color: var(--color-foreground);
+    background: var(--wf-background);
+    color: var(--wf-text);
     font-family: var(--font-family-sans);
-    line-height: var(--line-height-body);
+    line-height: var(--wf-line-height-body);
 }
 
 a {
@@ -21,6 +21,9 @@ button:disabled {
 h1,
 h2,
 h3,
+h4,
+h5,
+h6,
 p,
 ul,
 ol {
@@ -28,6 +31,17 @@ ol {
 }
 
 :focus-visible {
-    outline: 2px solid var(--color-focus);
-    outline-offset: 2px;
+    outline: var(--wf-focus-ring-width) solid var(--wf-focus-ring-color);
+    outline-offset: var(--wf-focus-ring-offset);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+    }
 }
