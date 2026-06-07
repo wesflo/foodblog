@@ -5,6 +5,7 @@
 }
 
 .control {
+    position: relative;
     display: grid;
     gap: var(--wf-space-xs);
     border: var(--wf-border-width) solid var(--wf-border);
@@ -19,9 +20,18 @@
 }
 
 .label {
+    position: absolute;
+    top: 1.4rem;
+    left: var(--wf-space-m);
     color: var(--wf-text-muted);
-    font-size: var(--wf-font-size-xs);
+    font-size: var(--wf-font-size-m);
     font-weight: 650;
+    pointer-events: none;
+    transform: translateY(-50%);
+    transition:
+        top var(--wf-transition-fast),
+        font-size var(--wf-transition-fast),
+        color var(--wf-transition-fast);
 }
 
 .textarea {
@@ -30,11 +40,21 @@
     background: transparent;
     color: var(--wf-text);
     font: inherit;
+    padding-top: 0.7rem;
     resize: vertical;
 }
 
 .textarea:focus {
     outline: 0;
+}
+
+.field[data-floating='true'] .label {
+    top: 0.9rem;
+    font-size: var(--wf-font-size-xs);
+}
+
+.field[data-floating='true'] .textarea {
+    padding-top: 1.55rem;
 }
 
 .description,

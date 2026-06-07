@@ -1,14 +1,26 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { RichTextExample } from './content-preview';
+import { MultiColumnExample } from './content-preview';
 
 const meta = {
     title: 'Content/Multi Column Text',
-    component: RichTextExample,
-    args: { columns: true },
     parameters: { layout: 'padded' },
-} satisfies Meta<typeof RichTextExample>;
+} satisfies Meta;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
-export const Overview: Story = {};
+
+export const ResponsiveFlow: Story = {
+    name: 'Responsive Flow',
+    render: () => <MultiColumnExample />,
+};
+
+export const WithHeadings: Story = {
+    name: 'With Headings',
+    render: () => <MultiColumnExample withHeading />,
+};
+
+export const WithLists: Story = {
+    name: 'With Lists',
+    render: () => <MultiColumnExample withList />,
+};

@@ -3,6 +3,8 @@
     width: min(42rem, 100%);
     overflow: hidden;
     border-block: var(--wf-border-width) solid var(--wf-border);
+    border-radius: var(--wf-radius-m);
+    background: var(--wf-surface);
 }
 
 .item + .item {
@@ -20,10 +22,22 @@
     font-weight: 700;
     padding: var(--wf-space-m) 0;
     text-align: left;
+    transition:
+        background-color var(--wf-transition-fast),
+        color var(--wf-transition-fast);
+}
+
+.trigger:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--wf-surface-muted) 60%, transparent);
 }
 
 .trigger:focus-visible {
     box-shadow: var(--wf-focus-ring);
+}
+
+.trigger:disabled {
+    color: color-mix(in srgb, var(--wf-text-muted) 60%, var(--wf-surface));
+    cursor: not-allowed;
 }
 
 .chevron {
@@ -39,8 +53,19 @@
 .panel {
     color: var(--wf-text-muted);
     padding-bottom: var(--wf-space-m);
+    overflow: hidden;
+    transition:
+        height var(--wf-transition-layout),
+        opacity var(--wf-transition-interaction);
 }
 
 .panel p {
     margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .chevron,
+    .panel {
+        transition: none;
+    }
 }

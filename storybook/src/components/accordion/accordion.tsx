@@ -6,16 +6,23 @@ import styles from './accordion.module.css';
 export type AccordionItem = {
     title: string;
     content: string;
+    disabled?: boolean;
 };
 
 export type AccordionProps = {
     items: AccordionItem[];
+    defaultValue?: string[];
 };
 
-export const Accordion = ({ items }: AccordionProps) => (
-    <BaseAccordion.Root className={styles.root}>
+export const Accordion = ({ items, defaultValue }: AccordionProps) => (
+    <BaseAccordion.Root className={styles.root} defaultValue={defaultValue}>
         {items.map((item, index) => (
-            <BaseAccordion.Item className={styles.item} key={item.title} value={String(index)}>
+            <BaseAccordion.Item
+                className={styles.item}
+                key={item.title}
+                value={String(index)}
+                {...(item.disabled ? { disabled: true } : {})}
+            >
                 <BaseAccordion.Header>
                     <BaseAccordion.Trigger className={styles.trigger}>
                         {item.title}

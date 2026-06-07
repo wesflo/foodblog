@@ -31,7 +31,7 @@
     background: transparent;
     color: inherit;
     font: inherit;
-    padding: 1.25rem var(--wf-space-m) 0.35rem;
+    padding: 0 var(--wf-space-m);
 }
 
 .input:focus {
@@ -53,11 +53,22 @@
         top var(--wf-transition-fast);
 }
 
-.input:focus + .label,
-.field[data-filled='true'] .label,
-.input:not(:placeholder-shown) + .label {
+.field[data-floating='true'] .input {
+    padding-top: 1.25rem;
+    padding-bottom: 0.35rem;
+}
+
+.field[data-floating='true'] .label {
     top: 0.7rem;
     font-size: var(--wf-font-size-xs);
+}
+
+.input::placeholder {
+    color: transparent;
+}
+
+.field[data-placeholder='true'] .input::placeholder {
+    color: var(--wf-text-muted);
 }
 
 .icon {

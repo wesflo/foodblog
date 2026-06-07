@@ -1,20 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { TokenGrid } from './foundation-preview';
+import { BreakpointPreview } from './foundation-preview';
 
 const meta = {
     title: 'Foundations/Breakpoints',
-    component: TokenGrid,
-    args: {
-        type: 'breakpoint',
-        tokens: [
-            '--wf-breakpoint-s',
-            '--wf-breakpoint-m',
-            '--wf-breakpoint-l',
-            '--wf-breakpoint-xl',
-        ],
-    },
-} satisfies Meta<typeof TokenGrid>;
+    component: BreakpointPreview,
+} satisfies Meta<typeof BreakpointPreview>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

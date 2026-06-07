@@ -4,6 +4,8 @@
 
 .list {
     display: flex;
+    gap: var(--wf-space-l);
+    overflow-x: auto;
     border-bottom: var(--wf-border-width) solid var(--wf-border);
 }
 
@@ -12,12 +14,30 @@
     border-bottom: 2px solid transparent;
     background: transparent;
     color: var(--wf-text-muted);
-    padding: var(--wf-space-s) var(--wf-space-m);
+    padding: var(--wf-space-s) 0;
+    white-space: nowrap;
+    transition:
+        border-color var(--wf-transition-interaction),
+        color var(--wf-transition-fast);
 }
 
 .tab[data-selected] {
     border-color: var(--wf-primary);
     color: var(--wf-primary);
+}
+
+.tab:hover:not(:disabled) {
+    color: var(--wf-primary);
+}
+
+.tab:focus-visible {
+    border-radius: var(--wf-radius-m);
+    box-shadow: var(--wf-focus-ring);
+}
+
+.tab:disabled {
+    color: color-mix(in srgb, var(--wf-text-muted) 55%, var(--wf-surface));
+    cursor: not-allowed;
 }
 
 .panel {

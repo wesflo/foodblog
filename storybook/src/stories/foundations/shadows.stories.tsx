@@ -1,15 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { TokenGrid } from './foundation-preview';
+import { ShadowPreview } from './foundation-preview';
 
 const meta = {
     title: 'Foundations/Shadows',
-    component: TokenGrid,
-    args: {
-        type: 'shadow',
-        tokens: ['--wf-shadow-overlay', '--wf-shadow-floating', '--wf-shadow-hover'],
-    },
-} satisfies Meta<typeof TokenGrid>;
+    component: ShadowPreview,
+} satisfies Meta<typeof ShadowPreview>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

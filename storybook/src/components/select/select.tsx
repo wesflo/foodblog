@@ -1,5 +1,5 @@
-import { forwardRef, useId } from 'react';
-import type { SelectHTMLAttributes } from 'react';
+import { forwardRef, useId, useState } from 'react';
+import type { FocusEvent, SelectHTMLAttributes } from 'react';
 
 import { ChevronDownIcon } from '../../utilities/icons';
 import type { FieldStatus } from '../field/field';
@@ -29,6 +29,10 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
             id,
             disabled = false,
             required = false,
+            value,
+            defaultValue,
+            onBlur,
+            onFocus,
             ...props
         },
         ref,
@@ -38,11 +42,18 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         const descriptionId = description ? `${selectId}-description` : undefined;
         const messageId = message ? `${selectId}-message` : undefined;
         const describedBy = [descriptionId, messageId].filter(Boolean).join(' ') || undefined;
+        const [focused, setFocused] = useState(false);
+        const hasValue =
+            value !== undefined
+                ? String(value).length > 0
+                : defaultValue !== undefined && String(defaultValue).length > 0;
+        const floating = focused || hasValue;
 
         return (
             <div
                 className={styles.field}
                 data-disabled={disabled || undefined}
+                data-floating={String(floating)}
                 data-status={status}
             >
                 <div className={styles.control}>
@@ -54,10 +65,20 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
                         aria-describedby={describedBy}
                         aria-invalid={status === 'error' || undefined}
                         className={styles.select}
+                        defaultValue={defaultValue}
                         disabled={disabled}
                         id={selectId}
+                        onBlur={(event: FocusEvent<HTMLSelectElement>) => {
+                            setFocused(false);
+                            onBlur?.(event);
+                        }}
+                        onFocus={(event: FocusEvent<HTMLSelectElement>) => {
+                            setFocused(true);
+                            onFocus?.(event);
+                        }}
                         ref={ref}
                         required={required}
+                        value={value}
                         {...props}
                     >
                         {options.map((option) => (

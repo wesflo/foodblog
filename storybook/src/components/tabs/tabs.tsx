@@ -6,6 +6,7 @@ export type TabItem = {
     value: string;
     label: string;
     content: string;
+    disabled?: boolean;
 };
 
 export type TabsProps = {
@@ -17,7 +18,12 @@ export const Tabs = ({ items, defaultValue }: TabsProps) => (
     <BaseTabs.Root className={styles.root} defaultValue={defaultValue ?? items[0]?.value}>
         <BaseTabs.List className={styles.list}>
             {items.map((item) => (
-                <BaseTabs.Tab className={styles.tab} key={item.value} value={item.value}>
+                <BaseTabs.Tab
+                    className={styles.tab}
+                    disabled={item.disabled}
+                    key={item.value}
+                    value={item.value}
+                >
                     {item.label}
                 </BaseTabs.Tab>
             ))}

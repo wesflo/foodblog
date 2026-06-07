@@ -1,13 +1,20 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { RichTextExample } from './content-preview';
+import { FigureExample } from './content-preview';
 
 const meta = {
     title: 'Content/Figure',
-    component: RichTextExample,
     parameters: { layout: 'padded' },
-} satisfies Meta<typeof RichTextExample>;
+} satisfies Meta;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
-export const Overview: Story = {};
+
+export const Default: Story = {
+    render: () => <FigureExample />,
+};
+
+export const WithLongCaption: Story = {
+    name: 'With Long Caption',
+    render: () => <FigureExample longCaption />,
+};
