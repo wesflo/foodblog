@@ -1,0 +1,104 @@
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-s);
+    width: auto;
+    border: 1px solid transparent;
+    border-radius: var(--radius-m);
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    transition:
+        background-color 160ms ease,
+        border-color 160ms ease,
+        color 160ms ease,
+        box-shadow 160ms ease,
+        transform 160ms ease;
+}
+
+.button:focus-visible {
+    box-shadow: var(--focus-ring);
+}
+
+.button:disabled {
+    opacity: 0.48;
+}
+
+.button:not(:disabled):active {
+    transform: translateY(1px);
+}
+
+.button[data-full-width='true'] {
+    width: 100%;
+}
+
+.button[data-size='s'] {
+    min-height: 2rem;
+    padding: 0 var(--space-m);
+    font-size: var(--font-size-s);
+}
+
+.button[data-size='m'] {
+    min-height: 2.5rem;
+    padding: 0 var(--space-l);
+    font-size: var(--font-size-m);
+}
+
+.button[data-size='l'] {
+    min-height: 3rem;
+    padding: 0 var(--space-xl);
+    font-size: var(--font-size-l);
+}
+
+.button[data-variant='filled'] {
+    background: var(--color-primary);
+    color: var(--color-primary-foreground);
+}
+
+.button[data-variant='filled']:not(:disabled):hover {
+    background: color-mix(in srgb, var(--color-primary) 88%, black);
+}
+
+.button[data-variant='secondary'] {
+    background: var(--color-secondary);
+    color: var(--color-secondary-foreground);
+}
+
+.button[data-variant='secondary']:not(:disabled):hover {
+    background: color-mix(in srgb, var(--color-secondary) 88%, white);
+}
+
+.button[data-variant='outline'] {
+    border-color: var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-foreground);
+}
+
+.button[data-variant='outline']:not(:disabled):hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+.button[data-variant='ghost'] {
+    background: transparent;
+    color: var(--color-foreground);
+}
+
+.button[data-variant='ghost']:not(:disabled):hover {
+    background: var(--color-muted);
+}
+
+.button[data-variant='link'] {
+    min-height: auto;
+    padding: 0;
+    border-color: transparent;
+    background: transparent;
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 0.16em;
+}
+
+.button[data-variant='link']:not(:disabled):hover {
+    color: color-mix(in srgb, var(--color-primary) 78%, black);
+}

@@ -1,0 +1,34 @@
+.page {
+    display: grid;
+    gap: var(--space-l);
+    max-width: var(--content-width);
+    padding: var(--space-xl);
+}
+
+.page h1,
+.page h2,
+.page p,
+.page ul {
+    margin-bottom: 0;
+}
+
+.page h1 {
+    font-size: var(--font-size-2xl);
+    line-height: var(--line-height-tight);
+}
+
+.page h2 {
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-tight);
+}
+
+.page ul {
+    display: grid;
+    gap: var(--space-s);
+    padding-left: var(--space-l);
+}
+
+.section {
+    display: grid;
+    gap: var(--space-m);
+}
