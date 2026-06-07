@@ -29,7 +29,8 @@ export const page = defineType({
         defineField({
             name: 'content',
             title: 'Content',
-            type: 'richText',
+            description: 'Controlled reusable content elements for this page.',
+            type: 'pageContent',
         }),
     ],
     preview: {
