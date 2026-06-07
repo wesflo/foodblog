@@ -14,6 +14,7 @@ export default tseslint.config(
             '**/coverage/**',
             '**/.sanity/**',
             '**/.turbo/**',
+            '**/storybook-static/**',
             'pnpm-lock.yaml',
         ],
     },

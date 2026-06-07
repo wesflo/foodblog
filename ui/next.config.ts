@@ -13,6 +13,7 @@ const nextConfig: NextConfig = {
             },
         ],
     },
+    transpilePackages: ['@wesflo/ui'],
     turbopack: {
         root: workspaceRoot,
     },
