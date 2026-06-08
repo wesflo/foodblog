@@ -1,6 +1,14 @@
 export { RichText } from './content/rich-text/rich-text';
 export type { RichTextProps } from './content/rich-text/rich-text';
 
+export { Teaser } from './compositions/teaser/teaser';
+export type {
+    TeaserImage,
+    TeaserImageSource,
+    TeaserProps,
+    TeaserVariant,
+} from './compositions/teaser/teaser';
+
 export { Button } from './components/button/button';
 export type { ButtonProps, ButtonSize, ButtonVariant } from './components/button/button';
 
