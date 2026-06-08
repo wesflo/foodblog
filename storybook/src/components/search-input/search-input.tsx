@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { ChangeEvent } from 'react';
+import { Search, X, iconDefaults } from '@wesflo/ui/icons';
 
-import { CloseIcon, SearchIcon } from '../../utilities/icons';
 import { IconButton } from '../icon-button/icon-button';
 import { Input } from '../input/input';
 import type { InputProps } from '../input/input';
@@ -34,7 +34,7 @@ export const SearchInput = ({
 
     return (
         <Input
-            leadingIcon={<SearchIcon />}
+            leadingIcon={<Search {...iconDefaults} />}
             onChange={handleChange}
             type="search"
             value={currentValue}
@@ -44,7 +44,7 @@ export const SearchInput = ({
                 ? {
                       trailingAction: (
                           <IconButton
-                              icon={<CloseIcon />}
+                              icon={<X {...iconDefaults} />}
                               label="Clear search"
                               onClick={handleClear}
                               size="small"

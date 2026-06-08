@@ -1,8 +1,8 @@
 import { forwardRef } from 'react';
-import type { ButtonHTMLAttributes, ReactElement, ReactNode } from 'react';
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
+import { LoaderCircle, iconDefaults } from '@wesflo/ui/icons';
 
 import { classNames } from '../../utilities/class-names';
-import { SpinnerIcon } from '../../utilities/icons';
 import styles from './button.module.css';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'link' | 'destructive';
@@ -13,8 +13,6 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
     size?: ButtonSize;
     fullWidth?: boolean;
     loading?: boolean;
-    leadingIcon?: ReactElement;
-    trailingIcon?: ReactElement;
     children: ReactNode;
 };
 
@@ -27,8 +25,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             loading = false,
             disabled = false,
             type = 'button',
-            leadingIcon,
-            trailingIcon,
             children,
             className,
             ...props
@@ -48,14 +44,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         >
             {loading ? (
                 <>
-                    <SpinnerIcon className={styles.spinner} />
+                    <LoaderCircle {...iconDefaults} className={styles.spinner} size={16} />
                     <span className={styles.srOnly}>Loading</span>
                 </>
-            ) : (
-                leadingIcon
-            )}
-            <span className={styles.label}>{children}</span>
-            {trailingIcon}
+            ) : null}
+            {children}
         </button>
     ),
 );

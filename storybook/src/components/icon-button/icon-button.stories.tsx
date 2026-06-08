@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { Search, iconDefaults } from '@wesflo/ui/icons';
 
-import { SearchIcon } from '../../utilities/icons';
 import { IconButton } from './icon-button';
 
 const meta = {
     title: 'Components/Icon Button',
     component: IconButton,
-    args: { label: 'Search', icon: <SearchIcon /> },
+    args: { label: 'Search', icon: <Search {...iconDefaults} /> },
     parameters: { layout: 'centered' },
 } satisfies Meta<typeof IconButton>;
 

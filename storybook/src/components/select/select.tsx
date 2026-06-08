@@ -1,7 +1,7 @@
 import { forwardRef, useId, useState } from 'react';
 import type { FocusEvent, SelectHTMLAttributes } from 'react';
+import { ChevronDown, iconDefaults } from '@wesflo/ui/icons';
 
-import { ChevronDownIcon } from '../../utilities/icons';
 import type { FieldStatus } from '../field/field';
 import styles from './select.module.css';
 
@@ -87,7 +87,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
                             </option>
                         ))}
                     </select>
-                    <ChevronDownIcon className={styles.chevron} />
+                    <ChevronDown {...iconDefaults} className={styles.chevron} size={18} />
                 </div>
                 {description ? (
                     <p className={styles.description} id={descriptionId}>

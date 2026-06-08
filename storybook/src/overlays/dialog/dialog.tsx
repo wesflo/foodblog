@@ -3,11 +3,11 @@
 import { Dialog as BaseDialog } from '@base-ui/react/dialog';
 import { AlertDialog } from '@base-ui/react/alert-dialog';
 import type { ReactElement, ReactNode } from 'react';
+import { Info, TriangleAlert, X, iconDefaults } from '@wesflo/ui/icons';
 
 import { Button } from '../../components/button/button';
 import { Input } from '../../components/input/input';
 import { Select } from '../../components/select/select';
-import { CloseIcon, InfoIcon, WarningIcon } from '../../utilities/icons';
 import styles from './dialog.module.css';
 
 export type DialogProps = {
@@ -53,7 +53,7 @@ export const ConfirmDialog = ({
             <AlertDialog.Backdrop className={styles.backdrop} />
             <AlertDialog.Popup className={styles.popup}>
                 <div className={styles.warningIcon}>
-                    <WarningIcon />
+                    <TriangleAlert {...iconDefaults} />
                 </div>
                 <AlertDialog.Title className={styles.title}>{title}</AlertDialog.Title>
                 <AlertDialog.Description className={styles.description}>
@@ -82,7 +82,7 @@ export const InformationDialog = ({ trigger }: { trigger: ReactElement }) => (
         trigger={trigger}
     >
         <div className={styles.infoIcon}>
-            <InfoIcon />
+            <Info {...iconDefaults} />
         </div>
     </Dialog>
 );
@@ -137,7 +137,7 @@ const DialogHeader = ({ title, description }: { title: string; description?: str
             ) : null}
         </div>
         <BaseDialog.Close aria-label="Close dialog" className={styles.close}>
-            <CloseIcon />
+            <X {...iconDefaults} />
         </BaseDialog.Close>
     </div>
 );

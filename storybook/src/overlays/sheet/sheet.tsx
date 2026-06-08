@@ -1,9 +1,9 @@
 import { Dialog as BaseDialog } from '@base-ui/react/dialog';
 import type { ReactElement } from 'react';
+import { ExternalLink, X, iconDefaults } from '@wesflo/ui/icons';
 
 import { IconButton } from '../../components/icon-button/icon-button';
 import { Link } from '../../components/link/link';
-import { CloseIcon, ExternalLinkIcon } from '../../utilities/icons';
 import styles from './sheet.module.css';
 
 export type SheetProps = {
@@ -20,7 +20,11 @@ export const Sheet = ({ trigger }: SheetProps) => (
                     <BaseDialog.Title className={styles.title}>Menu</BaseDialog.Title>
                     <BaseDialog.Close
                         render={
-                            <IconButton icon={<CloseIcon />} label="Close menu" variant="outline" />
+                            <IconButton
+                                icon={<X {...iconDefaults} />}
+                                label="Close menu"
+                                variant="outline"
+                            />
                         }
                     />
                 </div>
@@ -42,9 +46,21 @@ export const Sheet = ({ trigger }: SheetProps) => (
                     </Link>
                 </nav>
                 <div className={styles.socials}>
-                    <IconButton icon={<ExternalLinkIcon />} label="Instagram" variant="outline" />
-                    <IconButton icon={<ExternalLinkIcon />} label="Pinterest" variant="outline" />
-                    <IconButton icon={<ExternalLinkIcon />} label="Email" variant="outline" />
+                    <IconButton
+                        icon={<ExternalLink {...iconDefaults} />}
+                        label="Instagram"
+                        variant="outline"
+                    />
+                    <IconButton
+                        icon={<ExternalLink {...iconDefaults} />}
+                        label="Pinterest"
+                        variant="outline"
+                    />
+                    <IconButton
+                        icon={<ExternalLink {...iconDefaults} />}
+                        label="Email"
+                        variant="outline"
+                    />
                 </div>
             </BaseDialog.Popup>
         </BaseDialog.Portal>

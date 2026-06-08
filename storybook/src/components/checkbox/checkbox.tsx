@@ -1,7 +1,7 @@
 import { forwardRef, useId } from 'react';
 import type { InputHTMLAttributes, ReactNode } from 'react';
+import { Check, iconDefaults } from '@wesflo/ui/icons';
 
-import { CheckIcon } from '../../utilities/icons';
 import styles from './checkbox.module.css';
 
 export type CheckboxProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> & {
@@ -28,7 +28,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
                         type="checkbox"
                         {...props}
                     />
-                    <CheckIcon className={styles.check} />
+                    <Check {...iconDefaults} className={styles.check} size={14} />
                 </span>
                 <span>{label}</span>
             </label>

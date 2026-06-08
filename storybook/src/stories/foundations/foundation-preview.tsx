@@ -1,28 +1,22 @@
 import {
-    useEffect,
-    useState,
-    type CSSProperties,
-    type ReactElement,
-    type ReactNode,
-    type SVGProps,
-} from 'react';
+    ArrowLeft,
+    ArrowRight,
+    Check,
+    ExternalLink,
+    Info,
+    Search,
+    TriangleAlert,
+    Upload,
+    X,
+    iconDefaults,
+    type LucideIcon,
+} from '@wesflo/ui/icons';
+import { useEffect, useState, type CSSProperties, type ReactNode } from 'react';
 
-import {
-    ArrowLeftIcon,
-    ArrowRightIcon,
-    CheckIcon,
-    CloseIcon,
-    ExternalLinkIcon,
-    InfoIcon,
-    SearchIcon,
-    UploadIcon,
-    WarningIcon,
-} from '../../utilities/icons';
 import styles from '../story-layout.module.css';
 
 type TokenType = 'color' | 'space' | 'radius' | 'shadow' | 'breakpoint';
 type TokenDescriptor = string | { name: string; role: string };
-type PreviewIcon = (props: SVGProps<SVGSVGElement>) => ReactElement;
 
 export const TokenGrid = ({ tokens, type }: { tokens: TokenDescriptor[]; type: TokenType }) => (
     <section className={styles.page}>
@@ -174,7 +168,7 @@ export const IconPreview = () => (
             {iconItems.map(({ label, Icon }) => (
                 <article className={styles.card} key={label}>
                     <span className={styles.iconSample}>
-                        <Icon />
+                        <Icon {...iconDefaults} />
                     </span>
                     <p>{label}</p>
                 </article>
@@ -182,13 +176,13 @@ export const IconPreview = () => (
         </div>
         <div className={styles.iconSizes}>
             <span style={{ '--size': 'var(--wf-icon-size-s)' } as CSSProperties}>
-                <InfoIcon />
+                <Info {...iconDefaults} />
             </span>
             <span style={{ '--size': 'var(--wf-icon-size-m)' } as CSSProperties}>
-                <InfoIcon />
+                <Info {...iconDefaults} />
             </span>
             <span style={{ '--size': 'var(--wf-icon-size-l)' } as CSSProperties}>
-                <InfoIcon />
+                <Info {...iconDefaults} />
             </span>
         </div>
     </section>
@@ -271,16 +265,16 @@ const tokenClass = (type: TokenType) => {
     return styles.breakpoint;
 };
 
-const iconItems: Array<{ label: string; Icon: PreviewIcon }> = [
-    { label: 'Back', Icon: ArrowLeftIcon },
-    { label: 'Forward', Icon: ArrowRightIcon },
-    { label: 'Success', Icon: CheckIcon },
-    { label: 'Close', Icon: CloseIcon },
-    { label: 'External', Icon: ExternalLinkIcon },
-    { label: 'Info', Icon: InfoIcon },
-    { label: 'Search', Icon: SearchIcon },
-    { label: 'Upload', Icon: UploadIcon },
-    { label: 'Warning', Icon: WarningIcon },
+const iconItems: Array<{ label: string; Icon: LucideIcon }> = [
+    { label: 'Back', Icon: ArrowLeft },
+    { label: 'Forward', Icon: ArrowRight },
+    { label: 'Success', Icon: Check },
+    { label: 'Close', Icon: X },
+    { label: 'External', Icon: ExternalLink },
+    { label: 'Info', Icon: Info },
+    { label: 'Search', Icon: Search },
+    { label: 'Upload', Icon: Upload },
+    { label: 'Warning', Icon: TriangleAlert },
 ];
 
 const roleForToken = (token: string) => {

@@ -1,6 +1,6 @@
 import { Accordion as BaseAccordion } from '@base-ui/react/accordion';
+import { ChevronDown, iconDefaults } from '@wesflo/ui/icons';
 
-import { ChevronDownIcon } from '../../utilities/icons';
 import styles from './accordion.module.css';
 
 export type AccordionItem = {
@@ -26,7 +26,7 @@ export const Accordion = ({ items, defaultValue }: AccordionProps) => (
                 <BaseAccordion.Header>
                     <BaseAccordion.Trigger className={styles.trigger}>
                         {item.title}
-                        <ChevronDownIcon className={styles.chevron} />
+                        <ChevronDown {...iconDefaults} className={styles.chevron} size={18} />
                     </BaseAccordion.Trigger>
                 </BaseAccordion.Header>
                 <BaseAccordion.Panel className={styles.panel}>

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { ArrowRight, Search, X, iconDefaults } from '@wesflo/ui/icons';
 
-import { ArrowRightIcon, SearchIcon } from '../../utilities/icons';
 import { Button } from './button';
 
 const meta = {
@@ -35,9 +35,36 @@ export const States: Story = {
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
             <Button disabled>Disabled</Button>
             <Button loading>Saving</Button>
-            <Button leadingIcon={<SearchIcon />}>Search</Button>
-            <Button trailingIcon={<ArrowRightIcon />}>Mehr lesen</Button>
             <Button>Ein sehr langer Buttontext für Umbrüche</Button>
         </div>
+    ),
+};
+
+export const WithLeadingIcon: Story = {
+    name: 'With Leading Icon',
+    render: () => (
+        <Button>
+            <Search {...iconDefaults} size={16} />
+            Search
+        </Button>
+    ),
+};
+
+export const WithTrailingIcon: Story = {
+    name: 'With Trailing Icon',
+    render: () => (
+        <Button>
+            Mehr lesen
+            <ArrowRight {...iconDefaults} size={16} />
+        </Button>
+    ),
+};
+
+export const IconOnly: Story = {
+    name: 'Icon Only',
+    render: () => (
+        <Button aria-label="Close">
+            <X {...iconDefaults} size={16} />
+        </Button>
     ),
 };

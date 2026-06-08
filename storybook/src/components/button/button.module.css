@@ -144,7 +144,7 @@
     color: var(--wf-destructive-disabled-foreground);
 }
 
-.button svg {
+.button > svg {
     flex: 0 0 auto;
     width: var(--wf-icon-size-s);
     height: var(--wf-icon-size-s);

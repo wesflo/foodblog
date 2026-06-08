@@ -6,6 +6,7 @@
         "jsx": "react-jsx",
         "paths": {
             "@wesflo/ui": ["./src/index.ts"],
+            "@wesflo/ui/icons": ["./src/icons.ts"],
             "@wesflo/ui/styles": ["./src/styles/globals.css"],
             "@/*": ["./src/*"]
         }

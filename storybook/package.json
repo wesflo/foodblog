@@ -5,6 +5,7 @@
     "type": "module",
     "exports": {
         ".": "./src/index.ts",
+        "./icons": "./src/icons.ts",
         "./styles": "./src/styles/globals.css"
     },
     "scripts": {
@@ -18,7 +19,8 @@
         "clean": "rm -rf storybook-static tsconfig.tsbuildinfo"
     },
     "dependencies": {
-        "@base-ui/react": "1.5.0"
+        "@base-ui/react": "1.5.0",
+        "lucide-react": "^1.17.0"
     },
     "peerDependencies": {
         "react": ">=19.0.0",

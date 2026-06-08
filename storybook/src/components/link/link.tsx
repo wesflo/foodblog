@@ -1,6 +1,6 @@
 import type { AnchorHTMLAttributes, ReactNode } from 'react';
+import { ArrowLeft, ArrowRight, ExternalLink, iconDefaults } from '@wesflo/ui/icons';
 
-import { ArrowLeftIcon, ArrowRightIcon, ExternalLinkIcon } from '../../utilities/icons';
 import styles from './link.module.css';
 
 export type LinkVariant = 'inline' | 'text' | 'arrow' | 'external' | 'back' | 'muted';
@@ -21,17 +21,17 @@ export const Link = ({ variant = 'inline', disabled = false, children, ...props 
                 data-variant={variant}
             >
                 {children}
-                {variant === 'arrow' ? <ArrowRightIcon /> : null}
+                {variant === 'arrow' ? <ArrowRight {...iconDefaults} size={16} /> : null}
             </span>
         );
     }
 
     return (
         <a className={styles.link} data-variant={variant} {...props}>
-            {variant === 'back' ? <ArrowLeftIcon /> : null}
+            {variant === 'back' ? <ArrowLeft {...iconDefaults} size={16} /> : null}
             <span>{children}</span>
-            {variant === 'arrow' ? <ArrowRightIcon /> : null}
-            {variant === 'external' ? <ExternalLinkIcon /> : null}
+            {variant === 'arrow' ? <ArrowRight {...iconDefaults} size={16} /> : null}
+            {variant === 'external' ? <ExternalLink {...iconDefaults} size={16} /> : null}
         </a>
     );
 };

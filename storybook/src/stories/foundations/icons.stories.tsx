@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { IconPreview } from './foundation-preview';
 
 const meta = {
-    title: 'Foundations/Icons',
+    title: 'Styles/Icons',
     component: IconPreview,
 } satisfies Meta<typeof IconPreview>;
 

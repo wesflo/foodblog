@@ -1,8 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { Search, iconDefaults } from '@wesflo/ui/icons';
 import { describe, expect, it } from 'vitest';
 
-import { SearchIcon } from '../../utilities/icons';
 import { Button } from './button';
 
 describe('Button', () => {
@@ -33,7 +33,12 @@ describe('Button', () => {
     });
 
     it('supports icon content without losing its accessible name', () => {
-        render(<Button leadingIcon={<SearchIcon />}>Search</Button>);
+        render(
+            <Button>
+                <Search {...iconDefaults} size={16} />
+                Search
+            </Button>,
+        );
 
         expect(screen.getByRole('button', { name: 'Search' })).toBeInTheDocument();
     });
