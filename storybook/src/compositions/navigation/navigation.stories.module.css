@@ -1,0 +1,42 @@
+.canvas {
+    min-height: 100vh;
+    margin: calc(-1 * var(--wf-space-xl));
+    background: var(--wf-background);
+    padding: var(--wf-space-xl);
+}
+
+.pageContent {
+    display: grid;
+    gap: var(--wf-space-l);
+    max-width: var(--wf-wide-content-width);
+    padding-top: var(--wf-space-3xl);
+}
+
+.pageContent h1 {
+    max-width: 10ch;
+    margin: 0;
+    font-family: var(--wf-font-family-display);
+    font-size: var(--wf-font-size-4xl);
+    font-weight: 300;
+    letter-spacing: -0.035em;
+    line-height: var(--wf-line-height-tight);
+}
+
+.pageContent p {
+    max-width: var(--wf-content-width);
+    margin: 0;
+    color: var(--wf-text-muted);
+    font-size: var(--wf-font-size-l);
+    line-height: var(--wf-line-height-body);
+}
+
+.constrainedNavigation [class*='panelInner'] {
+    height: min(100%, 30rem);
+}
+
+@media (max-width: 760px) {
+    .canvas {
+        margin: calc(-1 * var(--wf-space-l));
+        padding: var(--wf-space-l);
+    }
+}
