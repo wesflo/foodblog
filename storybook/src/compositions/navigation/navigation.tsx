@@ -184,9 +184,7 @@ export const Navigation = ({
         if (state.view === 'search') {
             searchInputRef.current?.focus();
         }
-    }, [state.view]);
 
-    useEffect(() => {
         const scroller = panelScrollerRef.current;
         scroller?.scrollTo({ top: 0 });
         setIsContentScrolled(false);
@@ -221,6 +219,7 @@ export const Navigation = ({
                     size={actionSize}
                     title={searchLabel}
                     variant="secondary"
+                    className={styles.btn}
                 >
                     <Search {...iconDefaults} />
                 </Button>
@@ -233,15 +232,11 @@ export const Navigation = ({
                     size={actionSize}
                     title={menuLabel}
                     variant="secondary"
+                    className={styles.btn}
                 >
                     <Menu {...iconDefaults} />
                 </Button>
-                <div
-                    aria-hidden={!isOpen}
-                    className={styles.closeSlot}
-                    data-visible={String(isOpen)}
-                    inert={!isOpen ? true : undefined}
-                >
+                <div aria-hidden={!isOpen} className={styles.closeSlot}>
                     <Button
                         aria-label={closeLabel}
                         iconOnly
@@ -250,6 +245,7 @@ export const Navigation = ({
                         tabIndex={isOpen ? 0 : -1}
                         title={closeLabel}
                         variant="secondary"
+                        className={styles.btn}
                     >
                         <X {...iconDefaults} />
                     </Button>
@@ -262,13 +258,6 @@ export const Navigation = ({
                 data-open={String(isOpen)}
             >
                 <div className={styles.panelInner}>
-                    <div className={styles.panelHeader}>
-                        <RootSections
-                            activeSectionId={state.activeSectionId}
-                            onSectionChange={selectSection}
-                            sections={safeSections}
-                        />
-                    </div>
                     <div
                         className={styles.panelScroller}
                         onScroll={handlePanelScroll}
@@ -280,6 +269,13 @@ export const Navigation = ({
                             data-active={String(state.view === 'menu')}
                             inert={state.view !== 'menu' ? true : undefined}
                         >
+                            <div className={styles.panelHeader}>
+                                <RootSections
+                                    activeSectionId={state.activeSectionId}
+                                    onSectionChange={selectSection}
+                                    sections={safeSections}
+                                />
+                            </div>
                             <NavigationContent
                                 activeGroup={activeGroup}
                                 activeGroupId={state.activeGroupId}
@@ -473,9 +469,6 @@ const SearchContent = ({
             ref={inputRef}
             type="search"
         />
-        <div aria-live="polite" className={styles.resultsRegion} tabIndex={-1}>
-            <p>Suggestions and results will appear here.</p>
-        </div>
     </div>
 );
 

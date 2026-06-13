@@ -9,7 +9,6 @@
     inset-block-start: var(--wf-space-l);
     inset-inline-end: var(--wf-space-l);
     display: flex;
-    gap: var(--wf-space-s);
     align-items: center;
     border-radius: var(--wf-radius-pill);
     padding: 2px;
@@ -20,19 +19,22 @@
     box-shadow: var(--wf-shadow-hover);
 }
 
+.btn {
+    margin-left: var(--wf-space-s)
+}
+
 .closeSlot {
-    display: grid;
-    grid-template-columns: 0fr;
+    width: 0;
     opacity: 0;
     overflow: hidden;
     transition:
-        grid-template-columns var(--wf-transition-interaction),
+        width var(--wf-transition-interaction),
         opacity var(--wf-transition-interaction);
 }
 
-.closeSlot[data-visible='true'] {
-    grid-template-columns: 1fr;
+.closeSlot:not([aria-hidden="true"]) {
     opacity: 1;
+    width: 56px
 }
 
 .closeSlot > * {
