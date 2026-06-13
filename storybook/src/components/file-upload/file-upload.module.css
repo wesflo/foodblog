@@ -3,7 +3,6 @@
     grid-template-columns: auto 1fr auto;
     gap: var(--wf-space-s);
     align-items: center;
-    width: min(28rem, 100%);
     min-height: 5rem;
     border: 1px dashed var(--wf-border-strong);
     border-radius: var(--wf-radius-m);

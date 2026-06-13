@@ -3,13 +3,13 @@
     margin: calc(-1 * var(--wf-space-xl));
     background: var(--wf-background);
     padding: var(--wf-space-xl);
+    max-width: 100dvw;
 }
 
 .pageContent {
-    display: grid;
-    gap: var(--wf-space-l);
     max-width: var(--wf-wide-content-width);
     padding-top: var(--wf-space-3xl);
+    min-height: 200dvh;
 }
 
 .pageContent h1 {
@@ -17,7 +17,7 @@
     margin: 0;
     font-family: var(--wf-font-family-display);
     font-size: var(--wf-font-size-4xl);
-    font-weight: 300;
+    font-weight: 100;
     letter-spacing: -0.035em;
     line-height: var(--wf-line-height-tight);
 }

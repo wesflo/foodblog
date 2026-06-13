@@ -353,12 +353,12 @@ const NavigationContent = ({
                 items={constrainFeaturedItems(activeSection.featuredItems)}
                 layout="navigation"
             />
-            <TagLinks group={activeGroup} />
             <TagGroups
                 activeGroupId={activeGroupId ?? groups[0]?.id}
                 groups={groups}
                 onGroupChange={onGroupChange}
             />
+            <TagLinks group={activeGroup} />
         </div>
     );
 };
@@ -408,17 +408,18 @@ const TagLinks = ({ group }: { group: NavigationTagGroup | undefined }) => (
 );
 
 const TeaserSection = ({ section }: { section: TeaserNavigationSection }) => {
-    const layout = section.teaserLayout ?? 'small';
+    const hasLinks = Boolean(section.links?.length);
+    const layout = !hasLinks ? 'teaser-only' : section.teaserLayout ?? 'small';
     const featuredItems =
         layout === 'large'
             ? section.featuredItems.slice(0, MAX_LARGE_TEASERS)
             : constrainFeaturedItems(section.featuredItems);
-
     return (
         <div className={styles.teaserSection} data-layout={layout}>
-            {section.links?.length ? (
+            <FeaturedTeasers items={featuredItems} layout={layout} />
+            {hasLinks ? (
                 <nav className={styles.sectionLinks} aria-label={`${section.label} links`}>
-                    {section.links.map((link) => (
+                    {section.links!.map((link) => (
                         <a className={styles.sectionLink} href={link.href} key={link.href}>
                             <span>{link.label}</span>
                             <ArrowRight {...iconDefaults} size={16} />
@@ -426,7 +427,6 @@ const TeaserSection = ({ section }: { section: TeaserNavigationSection }) => {
                     ))}
                 </nav>
             ) : null}
-            <FeaturedTeasers items={featuredItems} layout={layout} />
         </div>
     );
 };
@@ -436,7 +436,7 @@ const FeaturedTeasers = ({
     layout,
 }: {
     items: NavigationPreviewItem[];
-    layout: 'navigation' | 'large' | 'small';
+    layout: 'navigation' | 'large' | 'small' | 'teaser-only';
 }) => (
     <div className={styles.featuredTeasers} data-layout={layout}>
         {items.map((item) => (
@@ -445,7 +445,6 @@ const FeaturedTeasers = ({
                 href={item.href}
                 image={item.image}
                 key={item.id}
-                variant="side-by-side-left"
                 {...(styles.featuredTeaser ? { className: styles.featuredTeaser } : {})}
                 {...(item.description ? { description: item.description } : {})}
                 {...(item.eyebrow ? { eyebrow: item.eyebrow } : {})}
