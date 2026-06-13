@@ -63,7 +63,7 @@ export const WithTrailingIcon: Story = {
 export const IconOnly: Story = {
     name: 'Icon Only',
     render: () => (
-        <Button aria-label="Close">
+        <Button aria-label="Close" iconOnly title="Close" variant="secondary">
             <X {...iconDefaults} size={16} />
         </Button>
     ),

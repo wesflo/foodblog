@@ -9,6 +9,22 @@ export type {
     TeaserVariant,
 } from './compositions/teaser/teaser';
 
+export { Navigation } from './compositions/navigation/navigation';
+export type {
+    NavigationGroup,
+    NavigationLinkItem,
+    NavigationNavigationSection,
+    NavigationPreviewImageSource,
+    NavigationPreviewItem,
+    NavigationProps,
+    NavigationSection,
+    NavigationSectionMode,
+    NavigationState,
+    NavigationTagGroup,
+    NavigationView,
+    TeaserNavigationSection,
+} from './compositions/navigation/navigation';
+
 export { Button } from './components/button/button';
 export type { ButtonProps, ButtonSize, ButtonVariant } from './components/button/button';
 

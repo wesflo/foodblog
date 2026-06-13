@@ -12,6 +12,7 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
     variant?: ButtonVariant;
     size?: ButtonSize;
     fullWidth?: boolean;
+    iconOnly?: boolean;
     loading?: boolean;
     children: ReactNode;
 };
@@ -22,6 +23,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             variant = 'primary',
             size = 'medium',
             fullWidth = false,
+            iconOnly = false,
             loading = false,
             disabled = false,
             type = 'button',
@@ -35,6 +37,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             aria-busy={loading || undefined}
             className={classNames(styles.button, className)}
             data-full-width={fullWidth || undefined}
+            data-icon-only={iconOnly || undefined}
             data-size={size}
             data-variant={variant}
             disabled={disabled || loading}
