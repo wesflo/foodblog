@@ -2,7 +2,7 @@ import { useState } from 'react';
 import type { ChangeEvent } from 'react';
 import { Search, X, iconDefaults } from '@wesflo/ui/icons';
 
-import { IconButton } from '../icon-button/icon-button';
+import { Button } from '../button/button';
 import { Input } from '../input/input';
 import type { InputProps } from '../input/input';
 
@@ -43,13 +43,16 @@ export const SearchInput = ({
             {...(currentValue
                 ? {
                       trailingAction: (
-                          <IconButton
-                              icon={<X {...iconDefaults} />}
-                              label="Clear search"
+                          <Button
+                              aria-label="Clear search"
+                              iconOnly
                               onClick={handleClear}
                               size="small"
+                              title="Clear search"
                               variant="ghost"
-                          />
+                          >
+                              <X {...iconDefaults} />
+                          </Button>
                       ),
                   }
                 : {})}

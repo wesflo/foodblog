@@ -2,7 +2,7 @@ import { Dialog as BaseDialog } from '@base-ui/react/dialog';
 import type { ReactElement } from 'react';
 import { ExternalLink, X, iconDefaults } from '@wesflo/ui/icons';
 
-import { IconButton } from '../../components/icon-button/icon-button';
+import { Button } from '../../components/button/button';
 import { Link } from '../../components/link/link';
 import styles from './sheet.module.css';
 
@@ -20,11 +20,14 @@ export const Sheet = ({ trigger }: SheetProps) => (
                     <BaseDialog.Title className={styles.title}>Menu</BaseDialog.Title>
                     <BaseDialog.Close
                         render={
-                            <IconButton
-                                icon={<X {...iconDefaults} />}
-                                label="Close menu"
+                            <Button
+                                aria-label="Close menu"
+                                iconOnly
+                                title="Close menu"
                                 variant="outline"
-                            />
+                            >
+                                <X {...iconDefaults} />
+                            </Button>
                         }
                     />
                 </div>
@@ -46,21 +49,15 @@ export const Sheet = ({ trigger }: SheetProps) => (
                     </Link>
                 </nav>
                 <div className={styles.socials}>
-                    <IconButton
-                        icon={<ExternalLink {...iconDefaults} />}
-                        label="Instagram"
-                        variant="outline"
-                    />
-                    <IconButton
-                        icon={<ExternalLink {...iconDefaults} />}
-                        label="Pinterest"
-                        variant="outline"
-                    />
-                    <IconButton
-                        icon={<ExternalLink {...iconDefaults} />}
-                        label="Email"
-                        variant="outline"
-                    />
+                    <Button aria-label="Instagram" iconOnly title="Instagram" variant="outline">
+                        <ExternalLink {...iconDefaults} />
+                    </Button>
+                    <Button aria-label="Pinterest" iconOnly title="Pinterest" variant="outline">
+                        <ExternalLink {...iconDefaults} />
+                    </Button>
+                    <Button aria-label="Email" iconOnly title="Email" variant="outline">
+                        <ExternalLink {...iconDefaults} />
+                    </Button>
                 </div>
             </BaseDialog.Popup>
         </BaseDialog.Portal>

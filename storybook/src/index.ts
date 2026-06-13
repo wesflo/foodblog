@@ -28,13 +28,6 @@ export type {
 export { Button } from './components/button/button';
 export type { ButtonProps, ButtonSize, ButtonVariant } from './components/button/button';
 
-export { IconButton } from './components/icon-button/icon-button';
-export type {
-    IconButtonProps,
-    IconButtonSize,
-    IconButtonVariant,
-} from './components/icon-button/icon-button';
-
 export { Link } from './components/link/link';
 export type { LinkProps, LinkVariant } from './components/link/link';
 
