@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import type { ComponentProps } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
@@ -59,6 +60,11 @@ export const SearchScrolledContent: Story = {
     render: (args) => <NavigationFrame {...args} constrainedPanel />,
 };
 
+export const ScrollLock: Story = {
+    name: 'Scroll Lock',
+    render: (args) => <NavigationFrame {...args} showScrollContent />,
+};
+
 export const MenuRightAlignedContent: Story = {
     name: 'Menu - Right Aligned Content',
     args: {
@@ -116,23 +122,56 @@ export const MobileSearch: Story = {
 
 const NavigationFrame = ({
     constrainedPanel = false,
+    showScrollContent = false,
     ...args
-}: ComponentProps<typeof Navigation> & { constrainedPanel?: boolean }) => (
-    <div className={storyStyles.canvas}>
-        <div className={storyStyles.pageContent}>
-            <h1>Cooking without a stage.</h1>
-            <p>
-                This composition floats above normal page content. The logo and page structure stay
-                in the application document flow, while Search and Menu remain available in the
-                upper right.
-            </p>
+}: ComponentProps<typeof Navigation> & {
+    constrainedPanel?: boolean;
+    showScrollContent?: boolean;
+}) => {
+    const pageContainerRef = useRef<HTMLDivElement>(null);
+
+    return (
+        <div className={storyStyles.canvas}>
+            <div className={storyStyles.pageShell} ref={pageContainerRef}>
+                <div className={storyStyles.pageContent}>
+                    <h1>Cooking without a stage.</h1>
+                    <p>
+                        This composition floats above normal page content. The logo and page
+                        structure stay in the application document flow, while Search and Menu
+                        remain available in the upper right.
+                    </p>
+                    {showScrollContent ? <ScrollLockStoryContent /> : null}
+                </div>
+            </div>
+            <Navigation
+                {...args}
+                pageContainerRef={pageContainerRef}
+                {...(constrainedPanel && storyStyles.constrainedNavigation
+                    ? { className: storyStyles.constrainedNavigation }
+                    : {})}
+            />
         </div>
-        <Navigation
-            {...args}
-            {...(constrainedPanel && storyStyles.constrainedNavigation
-                ? { className: storyStyles.constrainedNavigation }
-                : {})}
-        />
+    );
+};
+
+const ScrollLockStoryContent = () => (
+    <div className={storyStyles.scrollContent}>
+        {[
+            'Scroll to the middle of this page, then open Menu.',
+            'The document scrollbar should stay visible while this text remains fixed in place.',
+            'Scroll inside the Navigation panel and switch directly to Search.',
+            'Close the panel and confirm this page returns to the same scroll position.',
+        ].map((text, index) => (
+            <section className={storyStyles.scrollSection} key={text}>
+                <p className={storyStyles.scrollMarker}>Step {index + 1}</p>
+                <h2>{text}</h2>
+                <p>
+                    This is static story content used only to make page scroll preservation easy to
+                    verify by hand. The Navigation panel remains fixed above it and owns its own
+                    internal scroll region.
+                </p>
+            </section>
+        ))}
     </div>
 );
 

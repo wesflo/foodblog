@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import type { KeyboardEvent, RefObject, UIEvent } from 'react';
+import type { KeyboardEvent as ReactKeyboardEvent, RefObject, UIEvent } from 'react';
 import { ArrowRight, Menu, Search, X, iconDefaults } from '@wesflo/ui/icons';
 
 import { Button } from '../../components/button/button';
@@ -73,6 +73,7 @@ export type NavigationState = {
 
 export type NavigationProps = {
     sections: NavigationSection[];
+    pageContainerRef?: RefObject<HTMLElement | null>;
     searchLabel?: string;
     menuLabel?: string;
     closeLabel?: string;
@@ -91,6 +92,7 @@ const MAX_LARGE_TEASERS = 2;
 
 export const Navigation = ({
     sections,
+    pageContainerRef,
     searchLabel = 'Search',
     menuLabel = 'Menu',
     closeLabel = 'Close',
@@ -121,6 +123,12 @@ export const Navigation = ({
     const panelScrollerRef = useRef<HTMLDivElement>(null);
     const isOpen = state.view !== 'closed';
     const actionSize = isContentScrolled ? 'small' : 'medium';
+
+    usePageScrollLock({
+        enabled: isOpen,
+        panelScrollerRef,
+        targetRef: pageContainerRef,
+    });
 
     const activeSection =
         safeSections.find((section) => section.id === state.activeSectionId) ?? safeSections[0];
@@ -170,17 +178,6 @@ export const Navigation = ({
     };
 
     useEffect(() => {
-        if (!isOpen) return;
-
-        const previousOverflow = document.body.style.overflow;
-        document.body.style.overflow = 'hidden';
-
-        return () => {
-            document.body.style.overflow = previousOverflow;
-        };
-    }, [isOpen]);
-
-    useEffect(() => {
         if (state.view === 'search') {
             searchInputRef.current?.focus();
         }
@@ -190,7 +187,7 @@ export const Navigation = ({
         setIsContentScrolled(false);
     }, [state.view]);
 
-    const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    const handleKeyDown = (event: ReactKeyboardEvent<HTMLDivElement>) => {
         if (event.key !== 'Escape' || state.view === 'closed') return;
 
         closePanel();
@@ -219,7 +216,6 @@ export const Navigation = ({
                     size={actionSize}
                     title={searchLabel}
                     variant="secondary"
-                    className={styles.btn}
                 >
                     <Search {...iconDefaults} />
                 </Button>
@@ -232,7 +228,6 @@ export const Navigation = ({
                     size={actionSize}
                     title={menuLabel}
                     variant="secondary"
-                    className={styles.btn}
                 >
                     <Menu {...iconDefaults} />
                 </Button>
@@ -245,7 +240,6 @@ export const Navigation = ({
                         tabIndex={isOpen ? 0 : -1}
                         title={closeLabel}
                         variant="secondary"
-                        className={styles.btn}
                     >
                         <X {...iconDefaults} />
                     </Button>
@@ -409,7 +403,7 @@ const TagLinks = ({ group }: { group: NavigationTagGroup | undefined }) => (
 
 const TeaserSection = ({ section }: { section: TeaserNavigationSection }) => {
     const hasLinks = Boolean(section.links?.length);
-    const layout = !hasLinks ? 'teaser-only' : section.teaserLayout ?? 'small';
+    const layout = !hasLinks ? 'teaser-only' : (section.teaserLayout ?? 'small');
     const featuredItems =
         layout === 'large'
             ? section.featuredItems.slice(0, MAX_LARGE_TEASERS)
@@ -477,3 +471,159 @@ const constrainLinks = (links: NavigationLinkItem[]) => links.slice(0, MAX_LINKS
 
 const constrainFeaturedItems = (items: NavigationPreviewItem[] | undefined) =>
     items?.slice(0, MAX_FEATURED) ?? [];
+
+const usePageScrollLock = ({
+    enabled,
+    panelScrollerRef,
+    targetRef,
+}: {
+    enabled: boolean;
+    panelScrollerRef: RefObject<HTMLElement | null>;
+    targetRef: RefObject<HTMLElement | null> | undefined;
+}) => {
+    const lockStateRef = useRef<{
+        scrollY: number;
+        target: HTMLElement;
+        targetStyles: Pick<
+            CSSStyleDeclaration,
+            'left' | 'maxHeight' | 'overflow' | 'position' | 'right' | 'top' | 'width'
+        >;
+        bodyMinHeight: string;
+        htmlOverflowY: string;
+    } | null>(null);
+    const previousTouchYRef = useRef<number | null>(null);
+
+    useEffect(() => {
+        if (!enabled || !targetRef?.current) return;
+
+        const target = targetRef.current;
+        const scrollY = window.scrollY;
+        const targetStyles = {
+            left: target.style.left,
+            maxHeight: target.style.maxHeight,
+            overflow: target.style.overflow,
+            position: target.style.position,
+            right: target.style.right,
+            top: target.style.top,
+            width: target.style.width,
+        };
+        const bodyMinHeight = document.body.style.minHeight;
+        const htmlOverflowY = document.documentElement.style.overflowY;
+
+        lockStateRef.current = {
+            scrollY,
+            target,
+            targetStyles,
+            bodyMinHeight,
+            htmlOverflowY,
+        };
+
+        document.documentElement.style.overflowY = 'scroll';
+        document.body.style.minHeight = `${document.body.scrollHeight}px`;
+        target.style.position = 'fixed';
+        target.style.top = `-${scrollY}px`;
+        target.style.left = '0';
+        target.style.right = '0';
+        target.style.width = '100%';
+        target.style.overflow = 'hidden';
+        target.style.maxHeight = 'none';
+
+        const isInsidePanelScroller = (eventTarget: EventTarget | null) =>
+            eventTarget instanceof Node && panelScrollerRef.current?.contains(eventTarget);
+
+        const canScrollPanel = (deltaY: number) => {
+            const scroller = panelScrollerRef.current;
+            if (!scroller) return false;
+
+            const maxScrollTop = scroller.scrollHeight - scroller.clientHeight;
+            if (maxScrollTop <= 0) return false;
+            if (deltaY < 0) return scroller.scrollTop > 0;
+            if (deltaY > 0) return scroller.scrollTop < maxScrollTop;
+
+            return true;
+        };
+
+        const preventIfPageScroll = (event: WheelEvent) => {
+            if (isInsidePanelScroller(event.target) && canScrollPanel(event.deltaY)) return;
+
+            event.preventDefault();
+        };
+
+        const preventTouchScroll = (event: TouchEvent) => {
+            const touch = event.touches[0];
+            if (!touch) return;
+
+            const previousTouchY = previousTouchYRef.current;
+            previousTouchYRef.current = touch.clientY;
+            if (previousTouchY === null) {
+                event.preventDefault();
+                return;
+            }
+
+            const deltaY = previousTouchY - touch.clientY;
+            if (isInsidePanelScroller(event.target) && canScrollPanel(deltaY)) return;
+
+            event.preventDefault();
+        };
+
+        const resetTouchPosition = () => {
+            previousTouchYRef.current = null;
+        };
+
+        const preventScrollKeys = (event: KeyboardEvent) => {
+            const scrollKeys = new Set([
+                ' ',
+                'ArrowDown',
+                'ArrowLeft',
+                'ArrowRight',
+                'ArrowUp',
+                'End',
+                'Home',
+                'PageDown',
+                'PageUp',
+            ]);
+            if (!scrollKeys.has(event.key)) return;
+            if (isInsidePanelScroller(event.target)) return;
+
+            event.preventDefault();
+        };
+
+        const restoreScrollbarDrag = () => {
+            if (window.scrollY === scrollY) return;
+
+            window.scrollTo(0, scrollY);
+        };
+
+        window.addEventListener('wheel', preventIfPageScroll, { passive: false, capture: true });
+        window.addEventListener('touchmove', preventTouchScroll, { passive: false, capture: true });
+        window.addEventListener('touchend', resetTouchPosition, { passive: true });
+        window.addEventListener('touchcancel', resetTouchPosition, { passive: true });
+        window.addEventListener('keydown', preventScrollKeys, { capture: true });
+        window.addEventListener('scroll', restoreScrollbarDrag, { passive: true });
+
+        return () => {
+            const lockState = lockStateRef.current;
+            if (!lockState) return;
+
+            window.removeEventListener('wheel', preventIfPageScroll, { capture: true });
+            window.removeEventListener('touchmove', preventTouchScroll, { capture: true });
+            window.removeEventListener('touchend', resetTouchPosition);
+            window.removeEventListener('touchcancel', resetTouchPosition);
+            window.removeEventListener('keydown', preventScrollKeys, { capture: true });
+            window.removeEventListener('scroll', restoreScrollbarDrag);
+
+            lockState.target.style.position = lockState.targetStyles.position;
+            lockState.target.style.top = lockState.targetStyles.top;
+            lockState.target.style.left = lockState.targetStyles.left;
+            lockState.target.style.right = lockState.targetStyles.right;
+            lockState.target.style.width = lockState.targetStyles.width;
+            lockState.target.style.overflow = lockState.targetStyles.overflow;
+            lockState.target.style.maxHeight = lockState.targetStyles.maxHeight;
+            document.body.style.minHeight = lockState.bodyMinHeight;
+            document.documentElement.style.overflowY = lockState.htmlOverflowY;
+            window.scrollTo(0, lockState.scrollY);
+            lockStateRef.current = null;
+            previousTouchYRef.current = null;
+        };
+    }, [enabled, panelScrollerRef, targetRef]);
+};

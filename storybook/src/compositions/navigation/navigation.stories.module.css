@@ -6,6 +6,10 @@
     max-width: 100dvw;
 }
 
+.pageShell {
+    min-height: 100vh;
+}
+
 .pageContent {
     max-width: var(--wf-wide-content-width);
     padding-top: var(--wf-space-3xl);
@@ -32,6 +36,42 @@
 
 .constrainedNavigation [class*='panelInner'] {
     height: min(100%, 30rem);
+}
+
+.scrollContent {
+    display: grid;
+    gap: var(--wf-space-3xl);
+    padding-block: var(--wf-space-3xl);
+}
+
+.scrollSection {
+    display: grid;
+    gap: var(--wf-space-m);
+    max-width: var(--wf-content-width);
+    min-height: 70vh;
+    align-content: center;
+    border-block-start: var(--wf-border-width) solid var(--wf-border);
+}
+
+.scrollSection h2,
+.scrollSection p {
+    margin: 0;
+}
+
+.scrollSection h2 {
+    font-family: var(--wf-font-family-display);
+    font-size: var(--wf-font-size-3xl);
+    font-weight: 300;
+    letter-spacing: -0.035em;
+    line-height: var(--wf-line-height-heading);
+}
+
+.scrollMarker {
+    color: var(--wf-secondary);
+    font-size: var(--wf-font-size-xs);
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
 }
 
 @media (max-width: 760px) {

@@ -4,6 +4,7 @@
     inset-block-start: var(--wf-space-l);
     inset-inline-end: var(--wf-space-l);
     display: flex;
+    gap: var(--wf-space-s);
     align-items: center;
     border-radius: var(--wf-radius-pill);
     padding: 2px;
@@ -12,10 +13,6 @@
 
 .actions[data-scrolled='true'] {
     box-shadow: var(--wf-shadow-hover);
-}
-
-.btn {
-    margin-left: var(--wf-space-s)
 }
 
 .closeSlot {
@@ -27,9 +24,9 @@
         opacity var(--wf-transition-interaction);
 }
 
-.closeSlot:not([aria-hidden="true"]) {
+.closeSlot:not([aria-hidden='true']) {
     opacity: 1;
-    width: 56px
+    width: 56px;
 }
 
 .closeSlot > * {
@@ -76,6 +73,7 @@
     min-height: 0;
     overflow-x: hidden;
     overflow-y: auto;
+    overscroll-behavior: contain;
     padding: var(--wf-space-s) var(--wf-space-xl) var(--wf-space-xl);
     scroll-padding: var(--wf-space-s);
 }
