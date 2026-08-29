@@ -95,4 +95,3 @@
 - Storybook Build wurde erfolgreich ausgefuehrt.
 - Die konsumierende Next.js-App wurde erfolgreich gebaut.
 - Das Scroll-Lock-Verhalten wurde zusaetzlich manuell im Browser geprueft.
-

@@ -1,17 +1,18 @@
 :root {
     color-scheme: light;
 
+    --wf-primary: #43b5ceff;
+    --wf-secondary: #FC9F5B;
+    --wf-tertiary: #f05470;
+    --wf-accent: #ffc857ff;
+
     --wf-background: #f7f4ee;
     --wf-surface: #fffcf8;
     --wf-surface-muted: #f1ede7;
-    --wf-text: #272625;
+    --wf-text: #323031ff;
     --wf-text-muted: #76716c;
     --wf-border: #e7e3de;
     --wf-border-strong: #cbc6c0;
-    --wf-primary: #2d99f7;
-    --wf-secondary: #fa3c9b;
-    --wf-coral: #f05470;
-    --wf-yellow: #e7e89d;
 
     --wf-primary-hover: #147ee0;
     --wf-primary-active: #0f65c3;
