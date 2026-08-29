@@ -24,6 +24,7 @@ const preview: Preview = {
                     ['Rich Text', 'Multi Column Text', 'Lists', 'Quote', 'Table', 'Figure'],
                     'Components',
                     [
+                        'Breadcrumb',
                         'Button',
                         'Icon Button',
                         'Links',

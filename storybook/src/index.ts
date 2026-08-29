@@ -1,6 +1,23 @@
 export { RichText } from './content/rich-text/rich-text';
 export type { RichTextProps } from './content/rich-text/rich-text';
 
+export { Breadcrumb } from './components/breadcrumb/breadcrumb';
+export type { BreadcrumbItem, BreadcrumbProps } from './components/breadcrumb/breadcrumb';
+
+export { RecipeDetail } from './compositions/recipe-detail/recipe-detail';
+export type {
+    RecipeAbout,
+    RecipeDetailProps,
+    RecipeImage,
+    RecipeIngredient,
+    RecipeIngredientGroup,
+    RecipeMetric,
+    RecipeMetricKind,
+    RecipeStep,
+    RecipeStepGroup,
+    RecipeTag,
+} from './compositions/recipe-detail/recipe-detail';
+
 export { Teaser } from './compositions/teaser/teaser';
 export type {
     TeaserImage,
