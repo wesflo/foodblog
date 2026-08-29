@@ -1,7 +1,7 @@
 body {
     background: var(--wf-background);
     color: var(--wf-text);
-    font-family: var(--font-family-sans);
+    font-family: var(--font-family-default);
     line-height: var(--wf-line-height-body);
 }
 

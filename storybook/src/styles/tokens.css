@@ -40,11 +40,9 @@
     --wf-border-width: 1px;
     --wf-border-color: var(--wf-border);
 
-    --font-family-sans:
+    --font-family-default:
         Geist, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --wf-font-family-display:
-        Geist, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --wf-font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    --wf-font-family-display: var(--font-family-default);
 
     --wf-font-size-xs: 0.75rem;
     --wf-font-size-s: 0.875rem;

@@ -41,7 +41,7 @@
 }
 
 .tokenName {
-    font-family: var(--wf-font-family-mono);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: var(--wf-font-size-xs);
 }
 

@@ -96,14 +96,6 @@
     padding-inline: 0.15em;
 }
 
-.richText code {
-    border-radius: 0.35rem;
-    background: var(--wf-surface-muted);
-    font-family: var(--wf-font-family-mono);
-    font-size: 0.9em;
-    padding: 0.1em 0.35em;
-}
-
 .richText pre {
     break-inside: avoid;
     overflow: auto;
