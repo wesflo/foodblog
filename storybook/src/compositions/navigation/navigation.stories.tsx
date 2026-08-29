@@ -327,24 +327,17 @@ function previewSet(seed: string, eyebrow: string, headlines: string[]): Navigat
         href: `#${seed}-${index}`,
         image: {
             src: imageUrl(`${seed}-${index}`),
-            alt: `Abstract food image for ${headline}.`,
+            alt: `Placeholder image for ${headline}.`,
             sources: [
                 {
                     media: '(min-width: 800px)',
-                    srcSet: imageUrl(`${seed}-${index}-wide`),
+                    srcSet: imageUrl(`${seed}-${index}-wide`, 960, 720),
                 },
             ],
         },
     }));
 }
 
-function imageUrl(seed: string) {
-    const colors = ['#f7f4ee', '#effaf3', '#eef7ff', '#fff7e8'];
-    const accents = ['#2d99f7', '#fa3c9b', '#14985f', '#e7e89d'];
-    const hash = Array.from(seed).reduce((total, character) => total + character.charCodeAt(0), 0);
-    const background = colors[hash % colors.length]!;
-    const accent = accents[hash % accents.length]!;
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480"><rect width="640" height="480" fill="${background}"/><circle cx="${190 + (hash % 120)}" cy="210" r="80" fill="${accent}"/><rect x="260" y="170" width="210" height="150" rx="34" fill="#fffcf8"/><path d="M170 355c100-80 210 70 330-16" stroke="#272625" stroke-width="22" fill="none" stroke-linecap="round" opacity=".72"/></svg>`;
-
-    return `data:image/svg+xml,${encodeURIComponent(svg)}`;
+function imageUrl(seed: string, width = 640, height = 480) {
+    return `https://picsum.photos/seed/${seed}/${width}/${height}`;
 }

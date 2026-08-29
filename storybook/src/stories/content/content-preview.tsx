@@ -3,8 +3,7 @@ import { createElement } from 'react';
 import { RichText } from '../../content/rich-text/rich-text';
 import styles from './content-preview.module.css';
 
-const pastaImage =
-    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 520'%3E%3Crect width='900' height='520' fill='%23f7f4ee'/%3E%3Ccircle cx='450' cy='260' r='180' fill='%23fffcf8'/%3E%3Cpath d='M270 282c86-116 159 111 241 0s139 75 201 5' stroke='%232d99f7' stroke-width='34' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='368' cy='220' r='24' fill='%23fa3c9b'/%3E%3Ccircle cx='520' cy='315' r='20' fill='%23e7e89d'/%3E%3C/svg%3E";
+const pastaImage = 'https://picsum.photos/seed/content-pasta/900/520';
 
 export const ArticleOverview = () => (
     <article className={styles.article}>
@@ -37,10 +36,7 @@ export const ArticleOverview = () => (
                 Gutes Essen braucht keine Bühne. Nur Neugier und einen freien Abend.
             </blockquote>
             <figure>
-                <img
-                    alt="Abstract plate with pasta-like blue line and colorful garnish dots."
-                    src={pastaImage}
-                />
+                <img alt="Placeholder image for a pasta article." src={pastaImage} />
                 <figcaption>
                     Pasta mit Erbsen, Zitrone und Ricotta. Schnell, einfach und voller Geschmack.
                 </figcaption>
@@ -188,10 +184,7 @@ export const TableExample = () => (
 
 export const FigureExample = ({ longCaption = false }: { longCaption?: boolean }) => (
     <figure className={styles.figure}>
-        <img
-            alt="Abstract plate with pasta-like blue line and colorful garnish dots."
-            src={pastaImage}
-        />
+        <img alt="Placeholder image for a pasta figure." src={pastaImage} />
         <figcaption>
             {longCaption
                 ? 'Pasta mit Erbsen, Zitrone und Ricotta. Ein einfaches Gericht für Tage, an denen gutes Essen nicht kompliziert sein soll.'
