@@ -1,5 +1,5 @@
 import { useId } from 'react';
-import { ChefHat, Clock3, CookingPot, Gauge, TimerReset, iconDefaults } from '@wesflo/ui/icons';
+import { Clock3, CookingPot, Gauge, TimerReset, iconDefaults } from '@wesflo/ui/icons';
 
 import { Breadcrumb, type BreadcrumbItem } from '../../components/breadcrumb/breadcrumb';
 import { Link } from '../../components/link/link';
@@ -237,22 +237,21 @@ export const RecipeDetail = ({
             </div>
 
             <section className={`${styles.shell} ${styles.about}`}>
-                <div className={styles.aboutHeading}>
-                    <ChefHat {...iconDefaults} size={26} />
+                <div className={styles.aboutContent}>
                     <h2 className={styles.sectionTitle}>{aboutTitle}</h2>
+                    <RichText className={styles.aboutCopy}>
+                        {about.paragraphs.map((paragraph) => (
+                            <p key={paragraph}>{paragraph}</p>
+                        ))}
+                        {about.highlights?.length ? (
+                            <ul>
+                                {about.highlights.map((highlight) => (
+                                    <li key={highlight}>{highlight}</li>
+                                ))}
+                            </ul>
+                        ) : null}
+                    </RichText>
                 </div>
-                <RichText className={styles.aboutCopy}>
-                    {about.paragraphs.map((paragraph) => (
-                        <p key={paragraph}>{paragraph}</p>
-                    ))}
-                    {about.highlights?.length ? (
-                        <ul>
-                            {about.highlights.map((highlight) => (
-                                <li key={highlight}>{highlight}</li>
-                            ))}
-                        </ul>
-                    ) : null}
-                </RichText>
 
                 {tags.length > 0 ? (
                     <div className={styles.tags}>
