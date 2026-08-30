@@ -179,7 +179,7 @@ const recipeMock: RecipeDetailProps = {
 };
 
 const meta = {
-    title: 'Compositions/Recipe Detail',
+    title: 'Pages/Recipe Detail',
     component: RecipeDetail,
     args: recipeMock,
     parameters: {
