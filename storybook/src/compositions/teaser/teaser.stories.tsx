@@ -191,6 +191,25 @@ export const WithoutDescription: Story = {
     render: ({ description: _description, ...args }) => <Teaser {...args} />,
 };
 
+export const SmallHeadlineWithMeta: Story = {
+    name: 'Small headline with meta',
+    args: {
+        headlineSize: 's',
+        meta: [
+            { label: 'Gesamtzeit', value: '20 Min.' },
+            { label: 'Schwierigkeit', value: 'Einfach' },
+        ],
+    },
+    render: ({ description: _description, ...args }) => <Teaser {...args} />,
+};
+
+export const MediumHeadline: Story = {
+    name: 'Medium headline',
+    args: {
+        headlineSize: 'm',
+    },
+};
+
 export const StandardGridFourColumns: Story = {
     name: 'Standard Grid - Four Columns',
     render: () => <TeaserGrid columns={4} variant="standard" />,

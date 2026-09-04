@@ -1,0 +1,129 @@
+.hero {
+    display: grid;
+    overflow: hidden;
+    border: var(--wf-border-width) solid var(--wf-border);
+    border-radius: var(--wf-radius-l);
+    background: var(--wf-surface);
+}
+
+.copy {
+    display: grid;
+    align-content: center;
+    justify-items: start;
+    gap: var(--wf-space-l);
+    min-width: 0;
+    padding: var(--wf-space-l);
+}
+
+.content {
+    display: grid;
+    gap: var(--wf-space-m);
+}
+
+.eyebrow,
+.headline,
+.description,
+.meta {
+    margin: 0;
+}
+
+.eyebrow {
+    color: var(--wf-primary);
+    font-size: var(--wf-font-size-xs);
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.headline {
+    max-width: 15ch;
+    font-family: var(--font-family-default);
+    font-size: var(--wf-font-size-2xl);
+    font-weight: 100;
+    letter-spacing: -0.05em;
+    line-height: 0.98;
+}
+
+.description {
+    max-width: 39rem;
+    color: var(--wf-text-muted);
+    font-size: var(--wf-font-size-s);
+    line-height: 1.6;
+}
+
+.meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--wf-space-m) var(--wf-space-l);
+    padding: 0;
+}
+
+.metaItem {
+    display: flex;
+    align-items: center;
+    gap: var(--wf-space-xs);
+}
+
+.metaItem dt,
+.metaItem dd {
+    margin: 0;
+    line-height: 1.35;
+}
+
+.metaItem dt {
+    font-size: var(--wf-font-size-s);
+    font-weight: 700;
+}
+
+.metaItem dd {
+    color: var(--wf-text-muted);
+    font-size: var(--wf-font-size-xs);
+}
+
+.metaIcon {
+    flex: 0 0 auto;
+    color: var(--wf-primary);
+}
+
+.picture {
+    display: block;
+    min-width: 0;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--wf-surface-muted);
+}
+
+.image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (min-width: 600px) {
+    .copy {
+        padding: var(--wf-space-xl);
+    }
+}
+
+@media (min-width: 800px) {
+    .hero {
+        grid-template-columns: minmax(18rem, 5fr) minmax(0, 7fr);
+        min-height: 23rem;
+    }
+
+    .copy {
+        padding: var(--wf-space-xl);
+    }
+
+    .picture {
+        position: relative;
+        min-height: 100%;
+        aspect-ratio: auto;
+    }
+
+    .image {
+        position: absolute;
+        inset: 0;
+    }
+}

@@ -4,7 +4,7 @@ export type { RichTextProps } from './content/rich-text/rich-text';
 export { Breadcrumb } from './components/breadcrumb/breadcrumb';
 export type { BreadcrumbItem, BreadcrumbProps } from './components/breadcrumb/breadcrumb';
 
-export { RecipeDetail } from './compositions/recipe-detail/recipe-detail';
+export { RecipeDetail } from './pages/recipe-detail/recipe-detail';
 export type {
     RecipeAbout,
     RecipeDetailProps,
@@ -16,12 +16,31 @@ export type {
     RecipeStep,
     RecipeStepGroup,
     RecipeTag,
-} from './compositions/recipe-detail/recipe-detail';
+} from './pages/recipe-detail/recipe-detail';
+
+export { HomePage } from './pages/home/home-page';
+export type { HomeAbout, HomeHero, HomePageProps, HomeTeaserSection } from './pages/home/home-page';
+
+export { SideBySideHero } from './compositions/side-by-side-hero/side-by-side-hero';
+export type {
+    SideBySideHeroItem,
+    SideBySideHeroProps,
+} from './compositions/side-by-side-hero/side-by-side-hero';
+
+export { FeatureHero } from './compositions/feature-hero/feature-hero';
+export type {
+    FeatureHeroMetaItem,
+    FeatureHeroMetaKind,
+    FeatureHeroProps,
+    FeatureHeroVariant,
+} from './compositions/feature-hero/feature-hero';
 
 export { Teaser } from './compositions/teaser/teaser';
 export type {
+    TeaserHeadlineSize,
     TeaserImage,
     TeaserImageSource,
+    TeaserMetaItem,
     TeaserProps,
     TeaserVariant,
 } from './compositions/teaser/teaser';

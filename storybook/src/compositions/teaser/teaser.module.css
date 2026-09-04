@@ -76,11 +76,28 @@
     margin: 0;
     color: var(--wf-text);
     font-family: var(--wf-font-family-display);
+    line-height: var(--wf-line-height-heading);
+    overflow-wrap: anywhere;
+    transition: color var(--wf-transition-fast);
+}
+
+.headline[data-size='s'] {
+    max-width: none;
+    font-size: var(--wf-font-size-l);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+.headline[data-size='m'] {
+    font-size: var(--wf-font-size-xl);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+}
+
+.headline[data-size='l'] {
     font-size: var(--wf-font-size-2xl);
     font-weight: 300;
     letter-spacing: -0.035em;
-    line-height: var(--wf-line-height-heading);
-    transition: color var(--wf-transition-fast);
 }
 
 .description {
@@ -89,6 +106,34 @@
     color: var(--wf-text-muted);
     font-size: var(--wf-font-size-m);
     line-height: var(--wf-line-height-body);
+}
+
+.meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--wf-space-xs);
+    margin: var(--wf-space-s) 0 0;
+    padding: 0;
+    color: var(--wf-text-muted);
+    font-size: var(--wf-font-size-xs);
+    line-height: 1.4;
+}
+
+.meta > div {
+    display: flex;
+    align-items: center;
+    gap: var(--wf-space-xs);
+}
+
+.meta > div + div::before {
+    width: var(--wf-border-width);
+    height: 1em;
+    background: var(--wf-border-strong);
+    content: '';
+}
+
+.meta dd {
+    margin: 0;
 }
 
 .arrow {
@@ -105,6 +150,24 @@
 .teaser:hover .headline,
 .teaser:focus-within .headline {
     color: var(--wf-primary);
+}
+
+.teaser[data-headline-size='s'] .picture {
+    aspect-ratio: 16 / 9;
+}
+
+.teaser[data-headline-size='s'] .content {
+    min-height: 8rem;
+    padding: var(--wf-space-m);
+}
+
+.srOnly {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
 }
 
 @media (min-width: 800px) {
@@ -127,5 +190,11 @@
     .teaser[data-variant='side-by-side-right'] .content {
         min-height: 24rem;
         padding: var(--wf-space-xl);
+    }
+
+    .teaser[data-headline-size='s'][data-variant='side-by-side-left'] .content,
+    .teaser[data-headline-size='s'][data-variant='side-by-side-right'] .content {
+        min-height: 8rem;
+        padding: var(--wf-space-m);
     }
 }
